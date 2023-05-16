@@ -16,115 +16,107 @@ import styles from './header.module.scss';
 
 const Header = () => {
 
-
+  // return (<>lala</>)
 
   return (
-    // <div className={`border-bottom border-color-light-white ${styles.la}`}>
+    <>
+      <div className={`${styles.headerContainer }`}>
 
-    //   <nav className={` ${styles.navContainer} mx-2`}>
-    //     <div className={`${styles.logoContainer} bg-primary`}>
-    //       logo
-    //     </div>
+        <nav className={` ${styles.navContainer} mx-2`}>
+          <div className={`${styles.logoContainer} bg-primary`}>
+            logo
+          </div>
 
-    //     <div className={`${styles.linksContaier}`}>
-    //       <WdLink href={`/`} className={`${styles.link}`}>
-    //         ΑΡΧΙΚΗ
-    //       </WdLink>
+          <div className={`${styles.linksContaier}`}>
+            <WdLink href={`/`} className={`${styles.link}`}>
+              ΑΡΧΙΚΗ
+            </WdLink>
 
-    //       <WdLink href={`/`} className={`${styles.link}`}>
-    //         ΥΠΗΡΕΣΙΕΣ
-    //       </WdLink>
+            <WdLink href={`/`} className={`${styles.link}`}>
+              ΥΠΗΡΕΣΙΕΣ
+            </WdLink>
 
-    //       <WdLink href={`/`} className={`${styles.link}`}>
-    //         ΤΑ ΕΡΓΑ ΜΑΣ
-    //       </WdLink>
+            <WdLink href={`/`} className={`${styles.link}`}>
+              ΤΑ ΕΡΓΑ ΜΑΣ
+            </WdLink>
 
-    //       <WdLink href={`/`} className={`${styles.link}`}>
-    //         Η ΕΤΑΙΡΕΙΑ
-    //       </WdLink>
+            <WdLink href={`/`} className={`${styles.link}`}>
+              Η ΕΤΑΙΡΕΙΑ
+            </WdLink>
 
-    //       <WdLink href={`/`} className={`${styles.link}`}>
-    //         ΕΠΙΚΟΙΝΩΝΙΑ
-    //       </WdLink>
-    //     </div>
+            <WdLink href={`/`} className={`${styles.link}`}>
+              ΕΠΙΚΟΙΝΩΝΙΑ
+            </WdLink>
+          </div>
 
-    //     <div className={`${styles.searchContainer}`}>
-    //       <div className={styles.searchIcon}>
-    //         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
-    //           <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-    //         </svg>
-    //       </div>
+          <div className={`${styles.searchContainer}`}>
+            <div className={styles.searchIcon}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </div>
 
-    //       <button className="btn btn-secondary text-white">
-    //         ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
-    //       </button>
-    //     </div>
+            <button className="btn btn-secondary text-white">
+              ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
+            </button>
+          </div>
 
-    //   </nav>
+        </nav>
 
-    //   {/* <div className={styles.borderBottom}></div> */}
-    // </div>
-
-
-    <Navbar bg="light" expand="lg" className={`${styles.headerContainer} `}>
-    <Container fluid>
-      <Navbar.Brand href="/" className="text-white">logo</Navbar.Brand>
-
-      <Navbar.Toggle aria-controls="navbarScroll" className="text-white" color='white' />
-
-      <Navbar.Collapse id="navbarScroll">
-        <Nav
-          className={`mx-auto my-2 my-lg-0 ${styles.linksContaier}`}
-          style={{ maxHeight: '100px' }}
-          navbarScroll
-        >
-        
-          <Nav.Link href="/" className={`${styles.link}`}>
-            ΑΡΧΙΚΗ
-          </Nav.Link>
-
-          <Nav.Link href="/" className={`${styles.link}`}>
-            ΥΠΗΡΕΣΙΕΣ
-          </Nav.Link>
-
-          <Nav.Link href="/" className={`${styles.link}`}>
-            ΤΑ ΕΡΓΑ ΜΑΣ
-          </Nav.Link>
-
-          <Nav.Link href="/" className={`${styles.link}`}>
-             ΕΠΙΚΟΙΝΩΝΙΑ
-          </Nav.Link>
-
-          {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3" className={`${styles.link}`}>Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5" className={`${styles.link}`}>
-              Something else here
-            </NavDropdown.Item>
-          </NavDropdown> */}
-          {/* <Nav.Link href="#" disabled>
-            Link
-          </Nav.Link> */}
-
-        </Nav>
+        {/* <div className={styles.borderBottom}></div> */}
+      </div>
 
 
-        <div className={`${styles.searchContainer}`}>
-          <div className={styles.searchIcon}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-           </svg>
-           </div>
+      {/* <Navbar bg="light" expand="lg" className={`${styles.headerContainer} `}>
+        <Container fluid>
+          <Navbar.Brand href="/" className="text-white">logo</Navbar.Brand>
 
-          <button className="btn btn-secondary text-white">
-            ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
-         </button>
-        </div>
+          <Navbar.Toggle aria-controls="navbarScroll" className="text-white" color='white' />
 
-        {/* <Form className="d-flex">
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className={`mx-auto my-2 my-lg-0 ${styles.linksContaier}`}
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+
+              <Nav.Link href="/" className={`${styles.link}`}>
+                ΑΡΧΙΚΗ
+              </Nav.Link>
+
+              <Nav.Link href="/" className={`${styles.link}`}>
+                ΥΠΗΡΕΣΙΕΣ
+              </Nav.Link>
+
+              <Nav.Link href="/" className={`${styles.link}`}>
+                ΤΑ ΕΡΓΑ ΜΑΣ
+              </Nav.Link>
+
+              <Nav.Link href="/" className={`${styles.link}`}>
+                ΕΠΙΚΟΙΝΩΝΙΑ
+              </Nav.Link>
+
+            </Nav>
+
+
+            <div className={`${styles.searchContainer}`}>
+              <div className={styles.searchIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+              </div>
+
+              <button className="btn btn-secondary text-white">
+                ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
+              </button>
+            </div>
+
+
+          </Navbar.Collapse>
+        </Container>
+      </Navbar> */}
+
+      {/* <Form className="d-flex">
           <Form.Control
             type="search"
             placeholder="Search"
@@ -133,9 +125,8 @@ const Header = () => {
           />
           <Button variant="outline-success">Search</Button>
         </Form> */}
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>
+
+    </>
 
   )
 }

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.scss'
-import HomePage from '@/components/pages/HomePage'
+import HomePage from '@/components/pages/homepage/HomePage'
+
 
 
 export default function Home() {
