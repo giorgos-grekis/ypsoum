@@ -1,0 +1,62 @@
+.headerContainer {
+    position: sticky;
+    z-index: 3;
+    color: white;
+    // border-color: rgba(255,255,255,0.1) !important;
+    border-bottom:  1px solid rgba(255,255,255,0.1);
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 95px;
+    background-color: transparent;
+
+
+}
+
+.borderBottom{
+    border-bottom: 1px solid black;
+}
+
+.logoContainer {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+    align-items: center;
+}
+
+.linksContaier {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchContainer {
+    // flex: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    color: white;
+}
+
+.searchIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 1rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.link {
+    color: var(--primary-color) !important;
+    margin: 0 0.4rem !important;
+    font-weight: bold !important;
+}

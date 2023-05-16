@@ -4,6 +4,10 @@
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  --primary-color: #1cbfaa;
+  --secondary-color: #1388d7;
+
 }
 
 /**********             **********/
@@ -22,13 +26,19 @@
 
 // 4. Include any default map overrides here  
 
-$primary: purple;
-$danger: yellow;
+$primary: #1cbfaa;
+$secondary: #1388d7;
 
 $theme-colors: (
   "primary": $primary,
-  "danger": $danger
+  "secondary": $secondary
 );
+
+
+/*** BUTTONS ***/
+$btn-border-radius:           0px;
+$btn-border-radius-sm:        0px;
+$btn-border-radius-lg:        0px;
 
 
 // 5. Include remainder of required parts
@@ -95,6 +105,9 @@ $theme-colors: (
 
 
 
+
+
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -103,11 +116,15 @@ $theme-colors: (
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  // max-width: 1800px;
+  margin: 0 auto;
+  // overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
 }
 
 // body {
 
 // }
-
