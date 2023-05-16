@@ -1,0 +1,67 @@
+.footerContianer {
+    word-break: break-word;
+    background: #20252d;
+}
+
+
+
+
+
+
+//*** FOOTER BOTTOM LINE  ***//
+
+.website {
+    color: white;
+    transition: all var(--transition-delay);
+
+    &:hover {
+        cursor: pointer;
+        color: var(--secondary-color);
+    }
+}
+
+
+.webdimension {
+    color: var(--primary-color);
+    transition: all var(--transition-delay);
+
+    &:hover {
+        cursor: pointer;
+        color: var(--secondary-color);
+    }
+}
+
+.socialIconUl {
+    margin-bottom: 0;
+    display: inline-block;
+    padding-left: 10px;
+    list-style: none;
+
+    li {
+        vertical-align: middle;
+        display: inline-block;
+        margin-right: 5px;
+
+        &:first-child {
+            margin-top: 0;
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        a {
+            display: inline-block;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            background: #1cbfaa;
+            height: 41px;
+            line-height: 41px;
+            width: 41px;
+            transition: all var(--transition-delay);
+
+            &:hover{
+                background: var(--secondary-color);
+            }
+        }
+    }
+}

@@ -7,6 +7,7 @@ interface WdLink {
     href: string;
     children: string;
     className?: string;
+    target?: string;
 }
 
 // const getProperLink = (href: string, locale: string | undefined) => {
@@ -19,7 +20,7 @@ interface WdLink {
 //     return `/${locale}/${href}`
 // }
 
-const WdLink = ({ href:link, children, className }: WdLink) => {
+const WdLink = ({ href:link, children, className,target }: WdLink) => {
     // const router = useRouter();
     // const locale = router?.locale;
 
@@ -29,7 +30,7 @@ const WdLink = ({ href:link, children, className }: WdLink) => {
     // const link = getProperLink(href, locale);
 
     return (
-        <Link href={link} locale={false} className={className}>
+        <Link href={link} locale={false} className={className} target={target}>
             {children}
         </Link>
     );
