@@ -11,7 +11,8 @@
 
 
   // transitions
-  --transition-delay: 0.3s;
+  --transition-delay-small: 0.3s;
+  --transition-delay-large: 0.3s;
 
 
 
@@ -43,9 +44,9 @@ $theme-colors: (
 
 
 /*** BUTTONS ***/
-$btn-border-radius:           0px;
-$btn-border-radius-sm:        0px;
-$btn-border-radius-lg:        0px;
+$btn-border-radius: 0px;
+$btn-border-radius-sm: 0px;
+$btn-border-radius-lg: 0px;
 
 
 // 5. Include remainder of required parts
@@ -119,6 +120,11 @@ $btn-border-radius-lg:        0px;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+
+  &::after,
+  &:before {
+    box-sizing: border-box;
+  }
 }
 
 html,
@@ -128,10 +134,33 @@ body {
   // overflow-x: hidden;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-// body {
+.sec-title {
+  position: relative;
+  display: inline-block;
 
-// }
+  &:before {
+    position: absolute;
+    content: '';
+    z-index: 1;
+    height: 5px;
+    width: 3px;
+    bottom: 5px;
+    right: -5px; // 5px
+    background: #1cbfaa;
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    z-index: 1;
+    height: 7px;
+    width: 3px;
+    bottom: 2px;
+    right: -10px; //0 px
+    background: #1388d7;
+  }
+}
