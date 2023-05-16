@@ -1,51 +1,19 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
 
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import MainImage from '@/components/MainImage/MainImage';
+import ContactForm from '@/components/ContactForm/ContactForm';
+
 
 import styles from './contactPage.module.scss'
-import WdLink from '@/components/UI/WdLink'
+
 
 
 const ContactPageClient = () => {
     return (
         <>
             {/* main image */}
-            <section>
-                <div style={{ position: 'relative', top: '0', left: '0', bottom: '0', right: '0', width: '100%', height: '350px' }}>
-                    <Image
-                        src="/images/homePage/upsoun-main-image.jpg"
-                        alt="Contact page image"
-                        style={{ objectFit: "cover" }}
-                        fill={true}
-                    />
-
-                    <div className={`${styles.titleContainer}`}>
-                        <div className={`container`}>
-                            <h1 className={`${styles.title} mb-4`}>Επικοινωνία</h1>
-                        </div>
-                    </div>
-
-
-                    <div className={`${styles.breadcrumbsContainer}`}>
-                        <div className={`container`}>
-                            <ul className={`${styles.breadcrumbsUl}`}>
-                                <li className={`${styles.breadcrumbs}`}>
-                                    <WdLink href='/' className={`${styles.link}`}>
-                                        Αρχική
-                                    </WdLink>
-                                </li>
-                                <li className={`sec-title me-3 ms-2 mb-0`}></li>
-                                <li className={`${styles.breadcrumbs} ${styles.active}`}>
-                                    Επικοινωνία
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <MainImage  title='Επικοινωνία'/>
 
             {/* card section */}
             <section className="container">
@@ -105,87 +73,8 @@ const ContactPageClient = () => {
                 </div>
             </section>
 
-
             {/* form */}
-            <section className="container-fuild position-relative">
-
-                <div className="container" style={{ maxWidth: '750px' }}>
-                    <div className="row my-5">
-                        <p className={`${styles.text}`}>
-                            Επενδύστε στο μέλλον και μειώστε το κόστος των λογαριασμών σας!
-                        </p>
-
-                        <p className={`${styles.ctaMsg}`}>Κάντε το πρώτο βήμα και ζητήστε προσφορά για το δικό σας φωτοβολταϊκο σύστημα!</p>
-
-                        <Form>
-                            {/* name -- email */}
-                            <div className="row">
-                                {/* name */}
-                                <div className="col-12 col-md-6">
-                                    <Form.Group className="mb-3" controlId="formName">
-                                        <Form.Label className="text-muted">Το όνομά σας</Form.Label>
-                                        <Form.Control type="text" placeholder="Το όνομά σας" />
-                                    </Form.Group>
-                                </div>
-
-                                {/* email */}
-                                <div className="col-12 col-md-6">
-                                    <Form.Group className="mb-3" controlId="formEmail">
-                                        <Form.Label className="text-muted">Το email σας</Form.Label>
-                                        <Form.Control type="email" placeholder="Το email σας" />
-                                    </Form.Group>
-                                </div>
-                            </div>
-
-                            {/*  thema -- phone */}
-                            <div className="row">
-                                {/* thema */}
-                                <div className="col-12 col-md-6">
-                                    <Form.Group className="mb-3" controlId="formΤhema">
-                                        <Form.Label className="text-muted">Το Θέμα</Form.Label>
-                                        <Form.Control type="text" placeholder="Το Θέμα" />
-                                    </Form.Group>
-                                </div>
-
-                                {/* phone */}
-                                <div className="col-12 col-md-6">
-                                    <Form.Group className="mb-3" controlId="formPhone">
-                                        <Form.Label className="text-muted">Τηλέφωνο Επικοινωνίας</Form.Label>
-                                        <Form.Control type="text" placeholder="Τηλέφωνο Επικοινωνίας" />
-                                    </Form.Group>
-                                </div>
-                            </div>
-
-                            {/* thema */}
-                            <div className="row">
-                                {/* thema */}
-                                <div className="col-12">
-                                    <Form.Group className="mb-3" controlId="formMessage">
-                                        <Form.Label className="text-muted">Το μύνημά σας</Form.Label>
-                                        <Form.Control as="textarea" rows={5} />
-                                    </Form.Group>
-                                </div>
-                            </div>
-
-                            {/* submit */}
-                            <div className='d-flex justify-content-center'>
-                                <Button variant="primary" type="submit" className={`${styles.submitButton}`}>
-                                    ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
-                                </Button>
-                            </div>
-                        </Form>
-                    </div>
-                </div>
-
-                <div className={`${styles.ImageContainerForm}`}>
-                    <Image
-                        src={'/images/contact-fom_image.png'}
-                        width={421}
-                        height={373}
-                        alt={'an image'}
-                    />
-                </div>
-            </section>
+            <ContactForm />
         </>
     )
 }
