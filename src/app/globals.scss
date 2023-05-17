@@ -15,7 +15,6 @@
   --transition-delay-large: 0.8s;
 
 
-
 }
 
 /**********             **********/
@@ -34,6 +33,9 @@
 
 // 4. Include any default map overrides here  
 
+/************ CUSTOMIZE BOOTSTRAP ************/
+
+/*** Colors ***/
 $primary: #1cbfaa;
 $secondary: #1388d7;
 
@@ -43,10 +45,12 @@ $theme-colors: (
 );
 
 
-/*** BUTTONS ***/
+/*** Buttons ***/
 $btn-border-radius: 0px;
 $btn-border-radius-sm: 0px;
 $btn-border-radius-lg: 0px;
+
+/************ CUSTOMIZE BOOTSTRAP ************/
 
 
 // 5. Include remainder of required parts
