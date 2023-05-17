@@ -1,0 +1,83 @@
+.imageContainer{
+    margin-top: 7rem;
+    margin-bottom: 5rem;
+}
+
+.detailsContainer{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem 0rem;
+}
+
+.svg{
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.detailsTitle{
+    margin-bottom: 0rem;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.detailsCategory{
+    margin-bottom: 0rem;
+    font-weight: 300;
+}
+
+
+// projectSummaryTitle
+
+.projectSummaryTitle{
+    color: var(--secondary-color);
+}
+
+.projectSummaryBody{
+    line-height: 1.5;
+    font-size: 1.1rem;
+    color: #575a7b;
+}
+
+
+// detailsCardContainer
+
+.detailsCardContainer{
+    border: 1px solid #575a7b;
+    border-radius: 5px;
+    padding: 1rem 2rem;
+}
+
+.detailsCardTitle{
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.detailsCardListContainer{
+    list-style-type: none;
+    position: relative;
+    padding-left: 0rem;
+
+    svg{
+        fill:var(--primary-color);
+        margin-right: 0.5rem;
+    }
+
+    li{
+        color: #575a7b;
+        margin-bottom: 0.5rem;
+    }
+}
+
+
+// .lastRow
+
+.lastRow{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f1f7ff;
+    padding: 1rem 2rem;
+}
