@@ -113,6 +113,9 @@ $btn-border-radius-lg: 0px;
 
 
 
+// Import react slick carousel css
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 
 
 
@@ -166,5 +169,71 @@ a {
     bottom: 2px;
     right: -10px; //0 px
     background: #1388d7;
+  }
+}
+
+
+// About page
+.about-cotainer{
+  margin-top: 7rem;
+  margin-bottom: 5rem; 
+}
+
+.about-tile{
+  color: var(--secondary-color);
+  margin-left: 1.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  position: relative;
+  &:before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: auto;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    transform: translate(-1rem, -50%);
+  }
+}
+
+.about-subtitlte{
+  color: black;
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 1;
+  margin: 1rem 0;
+}
+
+.about-svg{
+  width: 5rem;
+  height: 5rem;
+  color: var(--secondary-color);
+}
+
+
+
+// about image section
+
+.about-image-section-svg{
+  width: 3rem;
+  height: 3rem;
+  color: white;
+  font-weight: bold;
+}
+
+.about-image-section-svg-small{
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.about-image-postion-absolute{
+  position: relative;
+  bottom: -5rem;
+  img{
+    border-radius: 5px;
   }
 }
