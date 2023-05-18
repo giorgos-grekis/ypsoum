@@ -241,3 +241,20 @@ a {
     border-radius: 5px;
   }
 }
+
+
+.ulWithSvg{
+  list-style-type: none;
+  position: relative;
+  padding-left: 0rem;
+
+  svg{
+      fill:var(--primary-color);
+      margin-right: 0.5rem;
+  }
+
+  li{
+      color: #575a7b;
+      margin-bottom: 0.5rem;
+  }
+}
