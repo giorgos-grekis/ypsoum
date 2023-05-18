@@ -133,7 +133,7 @@
 
 // yphresiesImageCard
 
-.yphreseisCardSectionAllCards{
+.yphreseisCardSectionAllCards {
     margin-top: -4rem;
     margin-bottom: 2rem;
 
@@ -141,4 +141,22 @@
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
+}
+
+
+
+// sthrizoumeInnerContainer
+
+.sthrizoumeInnerContainer {
+    padding: 9.5rem 6rem 7rem 6rem;
+
+    @media(max-width: 991.5px) {
+        padding: 4rem 2rem;
+    }
+}
+
+.strhrizoumeSvg {
+    color: white;
+    width: 2rem;
+    height: 2rem;
 }

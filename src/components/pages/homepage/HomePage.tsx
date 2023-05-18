@@ -226,6 +226,110 @@ const HomePage = () => {
                 </div>
 
             </section>
+
+
+            {/* στηρίζουμε την ανάπτυξη */}
+            <section>
+                <div className="container-fuild overflow-hidden h-100 my-5">
+                    <div className="row h-100 g-0">
+
+                        {/* image */}
+                        <div className="col-0 col-lg-6 d-none d-lg-flex">
+                            <div className="position-relative h-100 w-100">
+                                <Image
+                                    src="/images/homePage/upsoun-main-image.jpg"
+                                    // width={500}
+                                    // height={500}
+                                    alt="Picture of the author"
+                                    style={{ objectFit: "cover", top: '3rem', left: 0, bottom: 0, right: 0, position: 'absolute', height: '100%' }}
+                                    fill={true}
+                                    priority={true}
+                                />
+                            </div>
+                        </div>
+
+                        {/* text */}
+                        <div className="col-12 col-lg-6">
+                            <div className='bg-primary'>
+                                <div className={`${styles.sthrizoumeInnerContainer}`}>
+                                    <p className='about-tile text-white'>
+                                        30 Χρόνια Εμπειρία
+                                    </p>
+                                    <p className='about-subtitlte text-white'>Στηρίζουμε την ανάπτυξη ενός βιώσιμου μέλλοντος</p>
+
+                                    <p className='text-white lh-lg'>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi voluptates, cumque ratione molestiae corrupti ipsa repellendus doloribus error in doloremque suscipit blanditiis adipisci totam, sed quidem explicabo deleniti natus eum!
+                                    </p>
+
+                                    <div className="row mt-5">
+                                        {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                        <div className="col-12 col-lg-6 col-xxl-3">
+                                            <div className='d-flex flex-column align-items-lg-start justify-content-center'>
+                                                <div className={`${styles.strhrizoumeSvg} mb-2`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </div>
+
+                                                <p className="text-white fw-bold lh-1">
+                                                    Ολοκληρωμένες Υπηρεσίες
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                          {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                          <div className="col-12 col-lg-6 col-xl-3">
+                                            <div className='d-flex flex-column align-items-lg-start justify-content-center'>
+                                                <div className={`${styles.strhrizoumeSvg} mb-2`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </div>
+
+                                                <p className="text-white fw-bold lh-1">
+                                                    Ολοκληρωμένες Υπηρεσίες
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                          {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                          <div className="col-12 col-lg-6 col-xxl-3">
+                                            <div className='d-flex flex-column align-items-lg-start justify-content-center'>
+                                                <div className={`${styles.strhrizoumeSvg} mb-2`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </div>
+
+                                                <p className="text-white fw-bold lh-1">
+                                                    Ολοκληρωμένες Υπηρεσίες
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                          {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                          <div className="col-12 col-lg-6 col-xxl-3">
+                                            <div className='d-flex flex-column align-items-lg-start justify-content-center'>
+                                                <div className={`${styles.strhrizoumeSvg} mb-2`}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                </div>
+
+                                                <p className="text-white fw-bold lh-1">
+                                                    Ολοκληρωμένες Υπηρεσίες
+                                                </p>
+                                            </div>
+                                        </div>
+                                     
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
