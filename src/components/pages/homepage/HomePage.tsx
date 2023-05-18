@@ -5,6 +5,8 @@ import React from 'react'
 import Image from 'next/image';
 
 import styles from './homePage.module.scss';
+import WdLink from '@/components/UI/WdLink';
+import YphresiesCard from '@/components/YphresiesCard/YphresiesCard';
 
 const HomePage = () => {
 
@@ -111,7 +113,7 @@ const HomePage = () => {
 
                 </div>
             </section>
-            
+
             {/* 2 image one text */}
             <section>
                 <div className="container">
@@ -173,7 +175,57 @@ const HomePage = () => {
                 </div>
             </section>
 
+            {/* Υπηρεσίες section Image */}
+            <section>
+                <div className={`${styles.yphresiesSectionImage}`}>
+                    <Image
+                        src="/images/homePage/upsoun-main-image.jpg"
+                        alt="Contact page image"
+                        style={{ objectFit: "cover" }}
+                        fill={true}
+                    />
 
+                    <div className={`${styles.titleContainer}`}>
+                        <div className={`container`}>
+                            <p className={`about-tile text-white mb-4`}>
+                                Υπηρεσίες
+                            </p>
+                            <p className={`about-subtitlte text-white mb-4`}>
+                                Από Μελέτη έως Συνήτηση Φωτοβολταϊκών
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            {/* Υπηρεσίες section Cards */}
+            <section>
+                <div className="container">
+                    <div className={`row ${styles.yphreseisCardSectionAllCards}`}>
+
+                        <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
+                            <YphresiesCard />
+                        </div>
+
+
+                        <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
+                            <YphresiesCard />
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
+                            <YphresiesCard />
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
+                            <YphresiesCard />
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
         </>
     )
 }

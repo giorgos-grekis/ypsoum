@@ -5,7 +5,7 @@ import Link from "next/link";
 
 interface WdLink {
     href: string;
-    children: string;
+    children: string | React.ReactNode;
     className?: string;
     target?: string;
 }

@@ -178,18 +178,19 @@ a {
 
 
 // About page
-.about-cotainer{
+.about-cotainer {
   margin-top: 7rem;
-  margin-bottom: 5rem; 
+  margin-bottom: 5rem;
 }
 
-.about-tile{
+.about-tile {
   color: var(--secondary-color);
   margin-left: 1.5rem;
   font-weight: bold;
   font-size: 1.2rem;
   position: relative;
-  &:before{
+
+  &:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -202,7 +203,7 @@ a {
   }
 }
 
-.about-subtitlte{
+.about-subtitlte {
   color: black;
   font-weight: bold;
   font-size: 2.5rem;
@@ -210,7 +211,7 @@ a {
   margin: 1rem 0;
 }
 
-.about-svg{
+.about-svg {
   width: 5rem;
   height: 5rem;
   color: var(--secondary-color);
@@ -220,41 +221,42 @@ a {
 
 // about image section
 
-.about-image-section-svg{
+.about-image-section-svg {
   width: 3rem;
   height: 3rem;
   color: white;
   font-weight: bold;
 }
 
-.about-image-section-svg-small{
+.about-image-section-svg-small {
   width: 1.5rem;
   height: 1.5rem;
   color: white;
   font-weight: bold;
 }
 
-.about-image-postion-absolute{
+.about-image-postion-absolute {
   position: relative;
   bottom: -5rem;
-  img{
+
+  img {
     border-radius: 5px;
   }
 }
 
 
-.ulWithSvg{
+.ulWithSvg {
   list-style-type: none;
   position: relative;
   padding-left: 0rem;
 
-  svg{
-      fill:var(--primary-color);
-      margin-right: 0.5rem;
+  svg {
+    fill: var(--primary-color);
+    margin-right: 0.5rem;
   }
 
-  li{
-      color: #575a7b;
-      margin-bottom: 0.5rem;
+  li {
+    color: #575a7b;
+    margin-bottom: 0.5rem;
   }
 }
