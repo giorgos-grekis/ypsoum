@@ -7,6 +7,7 @@ import Image from 'next/image';
 import styles from './homePage.module.scss';
 import WdLink from '@/components/UI/WdLink';
 import YphresiesCard from '@/components/YphresiesCard/YphresiesCard';
+import ContactForm from '@/components/ContactForm/ContactForm';
 
 const HomePage = () => {
 
@@ -277,8 +278,8 @@ const HomePage = () => {
                                             </div>
                                         </div>
 
-                                          {/*  Ολοκληρωμένες Υπηρεσίες */}
-                                          <div className="col-12 col-lg-6 col-xl-3">
+                                        {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                        <div className="col-12 col-lg-6 col-xl-3">
                                             <div className='d-flex flex-column align-items-lg-start justify-content-center'>
                                                 <div className={`${styles.strhrizoumeSvg} mb-2`}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -292,8 +293,8 @@ const HomePage = () => {
                                             </div>
                                         </div>
 
-                                          {/*  Ολοκληρωμένες Υπηρεσίες */}
-                                          <div className="col-12 col-lg-6 col-xxl-3">
+                                        {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                        <div className="col-12 col-lg-6 col-xxl-3">
                                             <div className='d-flex flex-column align-items-lg-start justify-content-center'>
                                                 <div className={`${styles.strhrizoumeSvg} mb-2`}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -307,8 +308,8 @@ const HomePage = () => {
                                             </div>
                                         </div>
 
-                                          {/*  Ολοκληρωμένες Υπηρεσίες */}
-                                          <div className="col-12 col-lg-6 col-xxl-3">
+                                        {/*  Ολοκληρωμένες Υπηρεσίες */}
+                                        <div className="col-12 col-lg-6 col-xxl-3">
                                             <div className='d-flex flex-column align-items-lg-start justify-content-center'>
                                                 <div className={`${styles.strhrizoumeSvg} mb-2`}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -321,7 +322,7 @@ const HomePage = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                     
+
                                     </div>
                                 </div>
                             </div>
@@ -330,6 +331,84 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Προσφατα έργα */}
+            <section>
+                <div className="container my-5">
+                    <div className="row">
+                        <div className="text-center">
+                            <p className="about-tile">
+                                Πράσφατα
+                            </p>
+
+                            <p className="about-subtitlte">
+                                Πρόσφατα Έργα Μας
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container-fuild my-5">
+                    <div className="row g-0">
+                        {/* first image */}
+                        <div className="col-12 col-md-6 col-lg-3">
+                            <div className={`${styles.prosfataImage}`}>
+                                <Image
+                                    src="/images/homePage/upsoun-main-image.jpg"
+                                    alt="Picture of the author"
+                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                    fill={true}
+                                    priority={true}
+                                />
+                            </div>
+                        </div>
+
+                        {/* second image */}
+                        <div className="col-12 col-md-6 col-lg-3">
+                            <div className={`${styles.prosfataImage}`}>
+                                <Image
+                                    src="/images/homePage/upsoun-main-image.jpg"
+                                    alt="Picture of the author"
+                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                    fill={true}
+                                    priority={true}
+                                />
+                            </div>
+                        </div>
+
+                        {/* third image */}
+                        <div className="col-12 col-md-6 col-lg-3">
+                            <div className={`${styles.prosfataImage}`}>
+                                <Image
+                                    src="/images/homePage/upsoun-main-image.jpg"
+                                    alt="Picture of the author"
+                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                    fill={true}
+                                    priority={true}
+                                />
+                            </div>
+                        </div>
+
+                        {/* fourth image */}
+                        <div className="col-12 col-md-6 col-lg-3">
+                            <div className={`${styles.prosfataImage}`}>
+                                <Image
+                                    src="/images/homePage/upsoun-main-image.jpg"
+                                    alt="Picture of the author"
+                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                    fill={true}
+                                    priority={true}
+                                />
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+
+            </section>
+
+            {/* Φόρμα επικοινωνίας */}
+            <ContactForm />
         </>
     )
 }
