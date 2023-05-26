@@ -1,134 +1,199 @@
 'use client'
-import React from 'react'
-
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
+import { useEffect } from 'react';
+import { Navbar } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
-import Link from 'next/link';
+import styles from './header.module.scss';
 import WdLink from '@/components/UI/WdLink';
 
-import styles from './header.module.scss';
-
-
 const Header = () => {
+  // const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
+  useEffect(() => {
 
-  // return (<>lala</>)
+    const header = document.getElementById('navbar')!;
+
+    const scrollYFc = () => window.screenY;
+    const widthFc = () => window.innerWidth;
+
+
+    let lastScrollTop = 0;
+
+    const menuOnScroll = () => {
+
+      const scrollY = scrollYFc();
+      const width = widthFc();
+
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+
+      if(st >= 200){
+        header.classList.add('bg-white')
+      } else {
+        header.classList.remove('bg-white')
+      }
+
+
+      console.log('menuOnScroll: ', {scrollY, width, st});
+      
+
+    }
+
+
+    document.addEventListener('scroll', menuOnScroll);
+
+    return () => {
+      document.removeEventListener('scroll', menuOnScroll);
+    }
+
+
+
+  })
+
 
   return (
-    <>
-      <div className={`${styles.headerContainer }`}>
+    <div className={`${styles.headerContainer}`} id='navbar'>
+      <Navbar bg="light" expand="lg">
+        <div className="container-fluid">
 
-        <nav className={` ${styles.navContainer} mx-2`}>
-          <div className={`${styles.logoContainer} bg-primary`}>
-            logo
-          </div>
-
-          <div className={`${styles.linksContaier}`}>
-            <WdLink href={`/`} className={`${styles.link}`}>
-              ΑΡΧΙΚΗ
+          <Navbar.Brand className={styles.logoContainer}>
+            <WdLink href="/">
+              Logo
             </WdLink>
+          </Navbar.Brand>
 
-            <WdLink href={`/`} className={`${styles.link}`}>
-              ΥΠΗΡΕΣΙΕΣ
-            </WdLink>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-            <WdLink href={`/`} className={`${styles.link}`}>
-              ΤΑ ΕΡΓΑ ΜΑΣ
-            </WdLink>
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mx-auto">
 
-            <WdLink href={`/`} className={`${styles.link}`}>
-              Η ΕΤΑΙΡΕΙΑ
-            </WdLink>
+              {/* ΑΡΧΙΚΗ */}
+              <NavDropdown title=" ΑΡΧΙΚΗ" id="nav-dropdown-ΑΡΧΙΚΗ" className={`${styles.link}`}>
+                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΑΡΧΙΚΗ
+                  </WdLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΑΡΧΙΚΗ
+                  </WdLink>
+                </NavDropdown.Item>
 
-            <WdLink href={`/`} className={`${styles.link}`}>
-              ΕΠΙΚΟΙΝΩΝΙΑ
-            </WdLink>
-          </div>
+                <NavDropdown.Item href="#action/3.3">
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΑΡΧΙΚΗ
+                  </WdLink>
+                </NavDropdown.Item>
+                {/* <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">
+                  Separated link
+                </NavDropdown.Item> */}
+              </NavDropdown>
 
-          <div className={`${styles.searchContainer}`}>
-            <div className={styles.searchIcon}>
+              {/* ΥΠΗΡΕΣΙΕΣ */}
+              <NavDropdown title="ΥΠΗΡΕΣΙΕΣ" id="nav-dropdown-ΥΠΗΡΕΣΙΕΣ" className={`${styles.link}`}>
+                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΥΠΗΡΕΣΙΕΣ
+                  </WdLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΥΠΗΡΕΣΙΕΣ
+                  </WdLink>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item href="#action/3.3">
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΥΠΗΡΕΣΙΕΣ
+                  </WdLink>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              {/*  ΤΑ ΕΡΓΑ ΜΑΣ */}
+              <NavDropdown title="ΤΑ ΕΡΓΑ ΜΑΣ" id="nav-dropdown-ΤΑ-ΕΡΓΑ-ΜΑΣ" className={`${styles.link}`}>
+                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΤΑ ΕΡΓΑ ΜΑΣ
+                  </WdLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΤΑ ΕΡΓΑ ΜΑΣ
+                  </WdLink>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item href="#action/3.3">
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΤΑ ΕΡΓΑ ΜΑΣ
+                  </WdLink>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              {/* Η ΕΤΑΙΡΕΙΑ */}
+              <NavDropdown title="Η ΕΤΑΙΡΕΙΑ " id="nav-dropdown-Η-ΕΤΑΙΡΕΙΑ " className={`${styles.link}`}>
+                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    Η ΕΤΑΙΡΕΙΑ
+                  </WdLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    Η ΕΤΑΙΡΕΙΑ
+                  </WdLink>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item href="#action/3.3">
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    Η ΕΤΑΙΡΕΙΑ
+                  </WdLink>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+              {/* ΕΠΙΚΟΙΝΩΝΙΑ */}
+              <NavDropdown title="ΕΠΙΚΟΙΝΩΝΙΑ " id="nav-dropdown-ΕΠΙΚΟΙΝΩΝΙΑ " className={`${styles.link}`}>
+                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΕΠΙΚΟΙΝΩΝΙΑ
+                  </WdLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΕΠΙΚΟΙΝΩΝΙΑ
+                  </WdLink>
+                </NavDropdown.Item>
+
+                <NavDropdown.Item href="#action/3.3">
+                  <WdLink href={`/`} className={`${styles.link}`}>
+                    ΕΠΙΚΟΙΝΩΝΙΑ
+                  </WdLink>
+                </NavDropdown.Item>
+              </NavDropdown>
+
+
+            </Nav>
+          </Navbar.Collapse>
+
+
+          <div className={`d-none d-lg-flex  ${styles.searchContainer}`}>
+
+            {/* <div className={styles.searchIcon}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
-            </div>
+            </div> */}
 
-            <button className="btn btn-secondary text-white">
-              ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
-            </button>
-          </div>
-
-        </nav>
-
-        {/* <div className={styles.borderBottom}></div> */}
-      </div>
-
-
-      {/* <Navbar bg="light" expand="lg" className={`${styles.headerContainer} `}>
-        <Container fluid>
-          <Navbar.Brand href="/" className="text-white">logo</Navbar.Brand>
-
-          <Navbar.Toggle aria-controls="navbarScroll" className="text-white" color='white' />
-
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className={`mx-auto my-2 my-lg-0 ${styles.linksContaier}`}
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-            >
-
-              <Nav.Link href="/" className={`${styles.link}`}>
-                ΑΡΧΙΚΗ
-              </Nav.Link>
-
-              <Nav.Link href="/" className={`${styles.link}`}>
-                ΥΠΗΡΕΣΙΕΣ
-              </Nav.Link>
-
-              <Nav.Link href="/" className={`${styles.link}`}>
-                ΤΑ ΕΡΓΑ ΜΑΣ
-              </Nav.Link>
-
-              <Nav.Link href="/" className={`${styles.link}`}>
-                ΕΠΙΚΟΙΝΩΝΙΑ
-              </Nav.Link>
-
-            </Nav>
-
-
-            <div className={`${styles.searchContainer}`}>
-              <div className={styles.searchIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-              </div>
-
-              <button className="btn btn-secondary text-white">
+            <WdLink href={'/contact'}>
+              <button className="btn btn-secondary text-white p-3 fw-bold">
                 ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
               </button>
-            </div>
+            </WdLink>
+          </div>
 
+        </div>
+      </Navbar>
 
-          </Navbar.Collapse>
-        </Container>
-      </Navbar> */}
-
-      {/* <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Search"
-            className="me-2"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form> */}
-
-    </>
-
-  )
+    </div>
+  );
 }
 
-export default Header
+export default Header;

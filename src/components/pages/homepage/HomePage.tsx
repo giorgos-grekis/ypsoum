@@ -1,15 +1,36 @@
+'use client'
 import React from 'react'
-
-
-
 import Image from 'next/image';
+
 
 import styles from './homePage.module.scss';
 import WdLink from '@/components/UI/WdLink';
 import YphresiesCard from '@/components/YphresiesCard/YphresiesCard';
 import ContactForm from '@/components/ContactForm/ContactForm';
+import { find_link } from '@/functions/find_link';
 
-const HomePage = () => {
+
+// import ServicesSection from './ServicesSection/ServicesSection';
+
+
+
+const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, serviceProps }) => {
+
+
+
+
+    const homePage = homePageProps.status === 'fulfilled' && homePageProps.value || []
+    const slider = sliderProps.status === 'fulfilled' && sliderProps.value || []
+    const strengths = strengthsProps.status === 'fulfilled' && strengthsProps.value || []
+    const projects = projectProps.status === 'fulfilled' && projectProps.value || []
+    const services = serviceProps.status === 'fulfilled' && serviceProps.value || []
+
+
+    const field_section_about2 = homePage?.data?.[0]?.attributes?.field_section_about2?.value || ''
+    const field_section_keypoints2 = homePage?.data?.[0]?.attributes?.field_section_keypoints2?.value || ''
+
+
+
 
 
 
@@ -21,7 +42,7 @@ const HomePage = () => {
             <section style={{ height: '100vh' }}>
 
                 {/* hero image */}
-                <div className={`${styles.mainImageContainer}`}>
+                <div className={`${styles.mainImageContainer}`} style={{ height: '100vh' }}>
                     <Image
                         src="/images/homePage/upsoun-main-image.jpg"
                         // width={500}
@@ -44,70 +65,45 @@ const HomePage = () => {
                     </div>
 
                 </div>
-            </section>
 
+
+            </section>
 
             {/* icons card */}
             <section>
                 <div className="container">
                     <div className={`${styles.iconContainer} row`}>
 
-                        {/* Εγγύση Απόδοσης */}
-                        <div className="col-12 col-lg-4">
-                            <div className={`${styles.iconItem}`}>
-                                {/* icon */}
-                                <div className={`${styles.iconSvg}`}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        strokeWidth={2}
-                                        stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
-                                    </svg>
-                                </div>
+                        {strengths?.data?.map((strength, index) => {
 
-                                {/* text */}
-                                <div>
-                                    <p className="fw-bold h5">Εγγύηση Απόδοσης</p>
-                                    <p className="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                        </div>
+                            const title = strength?.attributes?.title
+                            const body = strength?.attributes?.body?.value
 
-                        {/* Προσαρμοσμένενες Λύσεις */}
-                        <div className="col-12 col-lg-4">
-                            <div className={`${styles.iconItem}`}>
-                                {/* icon */}
-                                <div className={`${styles.iconSvg}`}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
-                                    </svg>
+                            return (<div className="col-12 col-lg-4" key={index}>
+                                <div className={`${styles.iconItem}`}>
+                                    {/* icon */}
+                                    <div className={`${styles.iconSvg}`}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            strokeWidth={2}
+                                            stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+                                        </svg>
+                                    </div>
 
-                                </div>
+                                    {/* text */}
+                                    <div>
+                                        <p className="fw-bold h5">
+                                            {title}
+                                        </p>
 
-                                {/* text */}
-                                <div>
-                                    <p className="fw-bold h5">Προσαρμοσμένενες Λύσεις</p>
-                                    <p className="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                        </div>
+                                        <div className='text-muted' dangerouslySetInnerHTML={{ __html: body }} />
 
-                        {/* Γρήγορα & Οικονομικά */}
-                        <div className="col-12 col-lg-4">
-                            <div className={`${styles.iconItem}`}>
-                                {/* icon */}
-                                <div className={`${styles.iconSvg}`}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
+                                    </div>
                                 </div>
+                            </div>)
+                        })}
 
-                                {/* text */}
-                                <div>
-                                    <p className="fw-bold h5">Γρήγορα & Οικονομικά</p>
-                                    <p className="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-                            </div>
-                        </div>
+
 
 
                     </div>
@@ -115,7 +111,7 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* 2 image one text */}
+            {/* About -- field_section_about2 -- Ποιοι είμαστε  */}
             <section>
                 <div className="container">
                     <div className="row my-5 py-5">
@@ -162,16 +158,18 @@ const HomePage = () => {
 
 
                         </div>
-                        {/*  */}
+
                         <div className="col-12 col-lg-6">
-                            <p className='about-tile'>Ποιοι Είμαστε</p>
-                            <p className='about-subtitlte mb-4'>Η Ομάδα Ειδικών στην Εγκτατάσταση Φωτοβολταϊκών</p>
-                            <p className="text-muted mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ratione possimus a quo necessitatibus, aperiam voluptatem </p>
+
+                            {/* drupal body */}
+                            <div dangerouslySetInnerHTML={{ __html: field_section_about2 }} />
 
                             <button className="btn btn-secondary text-white py-3 px-4  fw-bold">
                                 ΠΕΡΙΣΣΟΤΕΡΑ
                             </button>
+
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -201,12 +199,39 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* Υπηρεσίες section Cards */}
+            {/* Υπηρεσίες section Cards -- Ιmage title */}
             <section>
+
                 <div className="container">
                     <div className={`row ${styles.yphreseisCardSectionAllCards}`}>
 
-                        <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
+                        {services?.data.map((service, index) => {
+
+                            // console.log('service: ', service?.attributes?.path?.alias)
+                          
+
+                            const title = service?.attributes?.title
+                            const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.relationships?.field_image?.data?.[0]?.attributes?.uri.url}`
+                            const body = service?.attributes?.body?.value
+
+                            const link = find_link(service)
+
+                            console.log('service_2: ', link)
+                            return (
+                                <WdLink href={`/yphresia/${link}`} key={index} className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5 px-2" >
+                                    {/* <div > */}
+                                        <YphresiesCard
+                                            title={title}
+                                            img={img}
+                                            body={body}
+                                        />
+                                    {/* </div> */}
+                                </WdLink>
+                            )
+
+                        })}
+
+                        {/* <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
                             <YphresiesCard />
                         </div>
 
@@ -221,16 +246,18 @@ const HomePage = () => {
 
                         <div className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5">
                             <YphresiesCard />
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>
 
+                {/* <ServicesSection services={services} /> */}
+
             </section>
 
-
-            {/* στηρίζουμε την ανάπτυξη */}
+            {/* keypoints2 -- field_section_keypoints2 */}
             <section>
+
                 <div className="container-fuild overflow-hidden h-100 my-5">
                     <div className="row h-100 g-0">
 
@@ -253,14 +280,19 @@ const HomePage = () => {
                         <div className="col-12 col-lg-6">
                             <div className='bg-primary'>
                                 <div className={`${styles.sthrizoumeInnerContainer}`}>
-                                    <p className='about-tile text-white'>
+
+                                    <div dangerouslySetInnerHTML={{ __html: field_section_keypoints2 }} />
+
+                                    {/* <p className='about-tile text-white'>
                                         30 Χρόνια Εμπειρία
                                     </p>
                                     <p className='about-subtitlte text-white'>Στηρίζουμε την ανάπτυξη ενός βιώσιμου μέλλοντος</p>
 
                                     <p className='text-white lh-lg'>
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi voluptates, cumque ratione molestiae corrupti ipsa repellendus doloribus error in doloremque suscipit blanditiis adipisci totam, sed quidem explicabo deleniti natus eum!
-                                    </p>
+                                    </p> */}
+
+
 
                                     <div className="row mt-5">
                                         {/*  Ολοκληρωμένες Υπηρεσίες */}
@@ -333,79 +365,83 @@ const HomePage = () => {
             </section>
 
             {/* Προσφατα έργα */}
-            <section>
-                <div className="container my-5">
-                    <div className="row">
-                        <div className="text-center">
-                            <p className="about-tile">
-                                Πράσφατα
-                            </p>
+            {projects?.data && (
+                <section>
+                    {/* {console.log('projects: ',projects)} */}
+                    <div className="container my-5">
+                        <div className="row">
+                            <div className="text-center">
+                                <p className="about-tile">
+                                    Πράσφατα
+                                </p>
 
-                            <p className="about-subtitlte">
-                                Πρόσφατα Έργα Μας
-                            </p>
+                                <p className="about-subtitlte">
+                                    Πρόσφατα Έργα Μας
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="container-fuild my-5">
-                    <div className="row g-0">
-                        {/* first image */}
-                        <div className="col-12 col-md-6 col-lg-3">
-                            <div className={`${styles.prosfataImage}`}>
-                                <Image
-                                    src="/images/homePage/upsoun-main-image.jpg"
-                                    alt="Picture of the author"
-                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
-                                    fill={true}
-                                    priority={true}
-                                />
+                    <div className="container-fuild my-5">
+                        <div className="row g-0">
+                            {/* first image */}
+                            <div className="col-12 col-md-6 col-lg-3">
+                                <div className={`${styles.prosfataImage}`}>
+                                    <Image
+                                        src="/images/homePage/upsoun-main-image.jpg"
+                                        alt="Picture of the author"
+                                        style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                        fill={true}
+                                        priority={true}
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* second image */}
-                        <div className="col-12 col-md-6 col-lg-3">
-                            <div className={`${styles.prosfataImage}`}>
-                                <Image
-                                    src="/images/homePage/upsoun-main-image.jpg"
-                                    alt="Picture of the author"
-                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
-                                    fill={true}
-                                    priority={true}
-                                />
+                            {/* second image */}
+                            <div className="col-12 col-md-6 col-lg-3">
+                                <div className={`${styles.prosfataImage}`}>
+                                    <Image
+                                        src="/images/homePage/upsoun-main-image.jpg"
+                                        alt="Picture of the author"
+                                        style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                        fill={true}
+                                        priority={true}
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* third image */}
-                        <div className="col-12 col-md-6 col-lg-3">
-                            <div className={`${styles.prosfataImage}`}>
-                                <Image
-                                    src="/images/homePage/upsoun-main-image.jpg"
-                                    alt="Picture of the author"
-                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
-                                    fill={true}
-                                    priority={true}
-                                />
+                            {/* third image */}
+                            <div className="col-12 col-md-6 col-lg-3">
+                                <div className={`${styles.prosfataImage}`}>
+                                    <Image
+                                        src="/images/homePage/upsoun-main-image.jpg"
+                                        alt="Picture of the author"
+                                        style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                        fill={true}
+                                        priority={true}
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* fourth image */}
-                        <div className="col-12 col-md-6 col-lg-3">
-                            <div className={`${styles.prosfataImage}`}>
-                                <Image
-                                    src="/images/homePage/upsoun-main-image.jpg"
-                                    alt="Picture of the author"
-                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
-                                    fill={true}
-                                    priority={true}
-                                />
+                            {/* fourth image */}
+                            <div className="col-12 col-md-6 col-lg-3">
+                                <div className={`${styles.prosfataImage}`}>
+                                    <Image
+                                        src="/images/homePage/upsoun-main-image.jpg"
+                                        alt="Picture of the author"
+                                        style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                        fill={true}
+                                        priority={true}
+                                    />
+                                </div>
                             </div>
+
                         </div>
-                      
                     </div>
-                </div>
 
-            </section>
+                </section>
+
+            )}
 
             {/* Φόρμα επικοινωνίας */}
             <ContactForm />

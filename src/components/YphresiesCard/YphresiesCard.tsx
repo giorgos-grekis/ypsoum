@@ -3,16 +3,16 @@ import styles from './yphresiesCard.module.scss'
 import WdLink from '../UI/WdLink'
 import Image from 'next/image'
 
-const YphresiesCard = () => {
+const YphresiesCard = ({title, img, body}) => {
     return (
         <>
-
             <div className={`${styles.yphresiesCardContainer}`}>
                 {/* images -svg */}
                 <div>
                     <div className={`${styles.yphresiesImageCard}`}>
                         <Image
-                            src="/images/homePage/upsoun-main-image.jpg"
+                            // src="/images/homePage/upsoun-main-image.jpg"
+                            src={img}
                             alt="Contact page image"
                             style={{ objectFit: "cover", top: '0', left: '0', right: '0', bottom: '0' }}
                             fill={true}
@@ -31,10 +31,17 @@ const YphresiesCard = () => {
 
                 {/* text & link */}
                 <div className='text-center '>
-                    <p className='fw-bold h5 mt-4'>Μελέτη</p>
-                    <p className="text-muted">
-                        Έλεγχος χώρου εγκατάστασης και αξολόγηση πραμέτρων για βέλτιστη απόδοση.
+                    
+                    {/* title */}
+                    <p className='fw-bold h5 mt-4 text-black'>
+                        {title}
                     </p>
+
+                    <div className={`text-muted ${styles.body}`} dangerouslySetInnerHTML={{__html: body}}/>
+                    
+                    {/* <p className="text-muted">
+                        Έλεγχος χώρου εγκατάστασης και αξολόγηση πραμέτρων για βέλτιστη απόδοση.
+                    </p> */}
 
                     <WdLink href='/'>
                         <div className={`${styles.arrowLink}`}>

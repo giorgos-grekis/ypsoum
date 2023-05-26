@@ -1,11 +1,11 @@
-.yphresiesCardContainer{
+.yphresiesCardContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
     padding: 1.5rem 1rem;
-    box-shadow: 1px 1px 10px rgba(200,200,200,0.2);
+    box-shadow: 1px 1px 10px rgba(200, 200, 200, 0.2);
     background-color: white;
     position: relative;
 }
@@ -20,7 +20,7 @@
     }
 }
 
-.yphresiesSvgCardContainer{
+.yphresiesSvgCardContainer {
     padding: 0.5rem;
     position: relative;
     color: white;
@@ -29,12 +29,22 @@
 }
 
 
-.yphresiesSvgCard{
+.yphresiesSvgCard {
     width: 1.8rem;
     height: 1.8rem;
 }
 
-.arrowLink{
+.body {
+    --line-height: 1.5;
+    --lines-to-show: 3;
+    box-sizing: border-box;
+    line-height: var(--line-height);
+    overflow: hidden;
+    height: calc(var(--line-height) * var(--lines-to-show) * 1em);
+    
+}
+
+.arrowLink {
     width: 1.5rem;
     height: 1.5rem;
     color: #575a7b;

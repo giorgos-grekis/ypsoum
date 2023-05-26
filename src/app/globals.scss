@@ -44,11 +44,34 @@ $theme-colors: (
   "secondary": $secondary
 );
 
+// border
+$border-color-translucent: inherit;
+
 
 /*** Buttons ***/
 $btn-border-radius: 0px;
 $btn-border-radius-sm: 0px;
 $btn-border-radius-lg: 0px;
+
+// nav
+$navbar-dark-color:                 inherit;
+$navbar-dark-hover-color:           inherit;
+$navbar-dark-active-color:          inherit;
+$navbar-dark-disabled-color:        inherit;
+// $navbar-dark-toggler-icon-bg:       url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+// $navbar-dark-toggler-border-color:  none;
+
+$navbar-light-color:                inherit;
+$navbar-light-hover-color:          inherit;
+$navbar-light-active-color:         inherit;
+$navbar-light-disabled-color:       inherit;
+// $navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-light-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+// $navbar-light-toggler-border-color: none;
+
+$navbar-light-brand-color:                inherit;
+$navbar-light-brand-hover-color:          inherit;
+$navbar-dark-brand-color:                 inherit;
+$navbar-dark-brand-hover-color:           inherit;
 
 /************ CUSTOMIZE BOOTSTRAP ************/
 
