@@ -4,72 +4,58 @@ import MainImage from '@/components/MainImage/MainImage'
 import Image from 'next/image'
 import WdLink from '@/components/UI/WdLink'
 import Testimoials from '@/components/Testimonials/Testimoials'
+import { find_img_alt } from '@/functions/find_img_alt'
 
-const AboutUsPageClient = () => {
+const AboutUsPageClient = ({ about_props, reviews_props }) => {
+
+
+    const about = about_props.status === 'fulfilled' && about_props.value || []
+    const reviews = reviews_props.status === 'fulfilled' && reviews_props.value || []
+
+
+
+
+    const title = about?.data?.[0]?.attributes?.title
+    const body = about?.data?.[0]?.attributes?.body.value
+
+    const body_2 = about?.data?.[0]?.attributes?.field_second_body.value
+
+    
+    
+    const img_1 = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${about?.data?.[0]?.relationships?.field_second_image?.data?.[0]?.attributes?.uri?.url}`
+    const alt_img_1 = find_img_alt(about?.fileMeta, about?.data?.[0]?.relationships?.field_second_image?.data?.[0]?.id, title)
+    
+    const img_2 =`${process.env.NEXT_PUBLIC_DRUPAL_URL}${about?.data?.[0]?.relationships?.field_image?.data?.[1]?.attributes?.uri?.url}`
+    const alt_img_2 = find_img_alt(about?.fileMeta, about?.data?.[0]?.relationships?.field_image?.data?.[1]?.id, title)
+
+    const img_3 =`${process.env.NEXT_PUBLIC_DRUPAL_URL}${about?.data?.[0]?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url}`
+    const alt_img_3 = find_img_alt(about?.fileMeta, about?.data?.[0]?.relationships?.field_image?.data?.[0]?.id, title)
+
+
+
+
+
+    
+
     return (
         <>
             {/* main image */}
-            <MainImage title={'Γνωρίστε μας'} />
-
-
+            <MainImage title={title} />
 
             {/* h css einai sto global.scss */}
             <div className="container overflow-hidden">
                 <div className="row about-cotainer">
 
-                    <div className="col-16 col-lg-6">
+                <div className="col-12 col-lg-6 px-2"   dangerouslySetInnerHTML={{ __html: body }} />
+    
 
-                        <div className='about-tile'>Ποιοι Ειμάστε</div>
-
-                        <div className='about-subtitlte'>Πίσω από τις Υπηρεσίες Φωτοβολταϊκης Ενέργειας</div>
-
-                        {/* H Αποστολή μας */}
-                        <div className='d-flex my-5'>
-                            <div className='about-svg mx-3'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                                </svg>
-
-                            </div>
-
-                            <div>
-                                <p className="fw-bold h5">Η Αποστολή μας</p>
-                                <p className="text-muted mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam inventore alias optio expedita recusandae placeat dolores maxime</p>
-                            </div>
-                        </div>
-
-                        {/* Το όρομά μας */}
-                        <div className='d-flex my-5'>
-                            <div className='about-svg mx-3'>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-
-                            </div>
-
-                            <div>
-                                <p className="fw-bold h5">Το όρομά μας</p>
-                                <p className="text-muted mb-0 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam inventore alias optio expedita recusandae placeat dolores maxime</p>
-                            </div>
-                        </div>
-
-                        {/* <button > */}
-                        <WdLink href="/contact" className="btn btn-primary fw-bold text-white px-4 py-3">
-                            ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
-                        </WdLink>
-                        {/* </button> */}
-
-                    </div>
-
-
-                    <div className="col-16 col-lg-6 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
+                    <div className="col-12 col-lg-6 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
                         <Image
-                            src={'/images/homePage/upsoun-main-image.jpg'}
+                            src={img_1}
                             width={500}
                             height={400} // 373
                             style={{ objectFit: 'cover' }}
-                            alt={'an image'}
+                            alt={alt_img_1}
                         />
                     </div>
                 </div>
@@ -78,21 +64,25 @@ const AboutUsPageClient = () => {
 
 
             {/* swste xrhmata */}
-            <section className='my-5 position-relative py-5'>
+            <section className='my-5 position-relative py-5' style={{backgroundColor: 'rgba(0,0,0,0.4)'}}>
                 <Image
-                    src="/images/homePage/upsoun-main-image.jpg"
-                    alt="Contact page image"
-                    style={{ objectFit: "cover", zIndex: '-1', top: '0', left: '0', bottom: '0', right: '0' }}
+                    src={img_2}
+                    alt={alt_img_2}
+                    style={{ objectFit: "cover", zIndex: '-1', top: '0', left: '0', bottom: '0', right: '0',  }}
                     fill={true}
                 />
 
                 <div className="container">
                     <div className="row my-5">
-                        <div className="col-12 col-lg-6">
-                            <p className="text-primary h5 fw-bold">Σωστε χρηματα, σωστε το περιβάλλον</p>
+
+
+                        <div className="col-12 col-lg-6"dangerouslySetInnerHTML={{ __html: body_2 }} />
+
+
+                            {/* <p className="text-primary h5 fw-bold">Σωστε χρηματα, σωστε το περιβάλλον</p>
                             <p className="text-white h1 fw-bold">Επενδύστε στο μέλλον και μειώστε το κόστος των λογαριασμών σας!</p>
-                            <p className='text-white'>Κάντε το πρώτο βήμα ζητήστε προσφορά για το δικό σας φωτοβολταϊκό σύστημα!</p>
-                        </div>
+                            <p className='text-white'>Κάντε το πρώτο βήμα ζητήστε προσφορά για το δικό σας φωτοβολταϊκό σύστημα!</p> */}
+                        {/* </div> */}
 
 
                         <div className="col-12 col-lg-6 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
@@ -189,9 +179,9 @@ const AboutUsPageClient = () => {
                         <div className="col-12 col-lg-7 d-none d-lg-block position-relative">
                             <div className='about-image-postion-absolute overflow-hidden'>
                                 <Image
-                                    src="/images/joshua-hoehne-WeSWsnVQYqU-unsplash.jpg"
-                                    alt="Contact page image"
-                                    style={{ objectFit: "cover"}}
+                                    src={img_3}
+                                    alt={alt_img_3}
+                                    style={{ objectFit: "cover" }}
                                     width={750}
                                     height={350}
                                 />
@@ -205,10 +195,64 @@ const AboutUsPageClient = () => {
 
             </section>
 
-            <Testimoials />
+            <Testimoials 
+                reviews={reviews}
+            />
 
         </>
     )
 }
 
 export default AboutUsPageClient
+
+
+// {/* <div className="col-12 col-lg-6">
+
+
+
+// <div className='about-tile'>Ποιοι Ειμάστε</div>
+
+// <div className='about-subtitlte'>Πίσω από τις Υπηρεσίες Φωτοβολταϊκης Ενέργειας</div>
+
+// {/* H Αποστολή μας */}
+// <div className='d-flex my-5'>
+//     <div className='about-svg mx-3'>
+//         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+//             <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+//         </svg>
+
+//         <div className='about_first_svg'></div>
+
+//     </div>
+
+//     <div>
+//         <p className="fw-bold h5">Η Αποστολή μας</p>
+//         <p className="text-muted mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam inventore alias optio expedita recusandae placeat dolores maxime</p>
+//     </div>
+// </div>
+
+
+
+// {/* Το όρομά μας */}
+// <div className='d-flex my-5'>
+//     <div className='about-svg mx-3'>
+//         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+//             <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+//             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+//         </svg>
+
+//     </div>
+
+//     <div>
+//         <p className="fw-bold h5">Το όρομά μας</p>
+//         <p className="text-muted mb-0 ">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam inventore alias optio expedita recusandae placeat dolores maxime</p>
+//     </div>
+// </div>
+
+// {/* <button > */}
+// <WdLink href="/contact" className="btn btn-primary fw-bold text-white px-4 py-3">
+//     ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
+// </WdLink>
+// {/* </button> */}
+
+// </div> */}
