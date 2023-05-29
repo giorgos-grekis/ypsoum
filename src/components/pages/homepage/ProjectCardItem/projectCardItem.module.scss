@@ -1,4 +1,14 @@
-.titleContainer{
+.prosfataImage {
+    position: relative;
+    width: 100%;
+    height: 550px;
+
+    @media (max-width:991.5px) {
+        height: 300px;
+    }
+}
+
+.titleContainer {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -7,10 +17,10 @@
     width: 80%;
 }
 
-.leftLine{
+.leftLine {
     position: relative;
 
-    &:before{
+    &:before {
         content: "";
         position: absolute;
         top: 0;
@@ -18,6 +28,6 @@
         width: 3px;
         height: 100%;
         background-color: var(--primary-color);
-        
+
     }
 }

@@ -30,10 +30,7 @@ const Header = () => {
       } else {
         header.classList.remove('bg-white')
       }
-
-
-      console.log('menuOnScroll: ', {scrollY, width, st});
-      
+      // console.log('menuOnScroll: ', {scrollY, width, st});
 
     }
 
@@ -50,7 +47,7 @@ const Header = () => {
 
 
   return (
-    <div className={`${styles.headerContainer}`} id='navbar'>
+    <header className={`${styles.headerContainer}`} id='navbar'>
       <Navbar bg="light" expand="lg">
         <div className="container-fluid">
 
@@ -192,7 +189,7 @@ const Header = () => {
         </div>
       </Navbar>
 
-    </div>
+    </header>
   );
 }
 

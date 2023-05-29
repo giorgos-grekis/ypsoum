@@ -13,7 +13,7 @@ const YphresiesCard = ({title, img, body}) => {
                         <Image
                             // src="/images/homePage/upsoun-main-image.jpg"
                             src={img}
-                            alt="Contact page image"
+                            alt={title}
                             style={{ objectFit: "cover", top: '0', left: '0', right: '0', bottom: '0' }}
                             fill={true}
                         />

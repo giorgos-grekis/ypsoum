@@ -5,6 +5,9 @@
     // width: 100%;
     // height: 100%;
     // z-index: -1;
+
+    width: 1920px;
+    height: 950px;
 }
 
 .titleContainer {
@@ -146,30 +149,3 @@
 
 
 
-// sthrizoumeInnerContainer
-
-.sthrizoumeInnerContainer {
-    padding: 9.5rem 6rem 7rem 6rem;
-
-    @media(max-width: 991.5px) {
-        padding: 4rem 2rem;
-    }
-}
-
-.strhrizoumeSvg {
-    color: white;
-    width: 2rem;
-    height: 2rem;
-}
-
-// prosfataImage
-
-.prosfataImage {
-    position: relative;
-    width: 100%;
-    height: 400px;
-
-    @media (max-width:991.5px){
-        height: 300px;
-    }
-}

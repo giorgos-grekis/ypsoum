@@ -6,7 +6,12 @@ import Image from 'next/image';
 
 import styles from './ergo.module.scss';
 
-const ErgoPageClient = () => {
+const ErgoPageClient = ({ergo}) => {
+
+  console.log('ergo_data: ', ergo)
+
+
+  
   return (
     <>
       {/* main image */}
