@@ -90,16 +90,12 @@ const ErgaPageClient = ({ erga }) => {
                     <div className="row my-5 py-5">
                         {erga?.data?.map((ergo, index) => {
 
-                            console.log('ergo: ', ergo?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url);
 
                             const title = ergo?.attributes?.title
                             const category = ergo?.attributes?.field_category
                             const img_path = ergo?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url
                             const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${img_path}`
                             const link = find_link(ergo, 'ergo')
-
-
-
 
 
                             return (<div className="col-12 col-md-12 col-lg-6 col-xl-4 p-3 d-flex justify-content-center align-items-center" key={index}>

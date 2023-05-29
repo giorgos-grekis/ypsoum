@@ -6,7 +6,13 @@ import styles from './uphresiaPage.module.scss'
 import WdLink from '@/components/UI/WdLink'
 import Image from 'next/image'
 
-const YphresiaPageClient = () => {
+const YphresiaPageClient = ({service}) => {
+
+    console.log('service: ', service?.data?.[0]?.attributes?.field_second_body?.value);
+
+    const ul = service?.data?.[0]?.attributes?.field_second_body?.value
+    
+
     return (
         <>
 
@@ -117,7 +123,12 @@ const YphresiaPageClient = () => {
                                         Επισκόπηση Υπηρεσίας
                                     </p>
 
-                                    <ul className='ulWithSvg'>
+                                    <div 
+                                        className='ulWithSvg'
+                                        dangerouslySetInnerHTML={{__html: ul}}
+                                    />
+
+                                    {/* <ul className='ulWithSvg'>
                                         <li>
                                             <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
                                                 <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
@@ -167,7 +178,7 @@ const YphresiaPageClient = () => {
                                                 dfasfsdaf
                                             </span>
                                         </li>
-                                    </ul>
+                                    </ul> */}
 
                                 </div>
 

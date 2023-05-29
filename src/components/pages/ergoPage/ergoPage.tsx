@@ -6,16 +6,32 @@ import Image from 'next/image';
 
 import styles from './ergo.module.scss';
 
-const ErgoPageClient = ({ergo}) => {
-
-  console.log('ergo_data: ', ergo)
+const ErgoPageClient = ({ ergo }) => {
 
 
-  
+  const title = ergo?.data?.[0]?.attributes?.title
+
+  const body = ergo?.data?.[0]?.attributes?.body?.value
+
+  const img_drupal_part = ergo?.data?.[0]?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url
+  const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${img_drupal_part}`
+
+  const category = ergo?.data?.[0]?.attributes?.field_category
+  const client = ergo?.data?.[0]?.attributes?.field_client
+  const date = ergo?.data?.[0]?.attributes?.field_date
+  const cost = ergo?.data?.[0]?.attributes?.field_cost
+
+  const challenges = ergo?.data?.[0]?.attributes?.field_challenges
+  const solutions = ergo?.data?.[0]?.attributes?.field_solutions
+
+
+
+
+
   return (
     <>
       {/* main image */}
-      <MainImage title={'Το Έργο μου'} />
+      <MainImage title={title} />
 
 
       {/* main contect */}
@@ -24,11 +40,11 @@ const ErgoPageClient = ({ergo}) => {
           {/* image */}
           <div className={`row ${styles.imageContainer} mx-0 mx-md-5`}>
             <Image
-              src={'/images/homePage/upsoun-main-image.jpg'}
+              src={img}
               width={421}
               height={400} // 373
               style={{ objectFit: 'cover' }}
-              alt={'an image'}
+              alt={title}
             />
           </div>
 
@@ -46,7 +62,9 @@ const ErgoPageClient = ({ergo}) => {
 
               <div>
                 <p className={`${styles.detailsTitle}`}>Κατηγορία:</p>
-                <p className={`${styles.detailsCategory}`}>Ηλιακή Ενέργεια</p>
+                <p className={`${styles.detailsCategory}`}>
+                  {category}
+                </p>
               </div>
             </div>
 
@@ -61,7 +79,9 @@ const ErgoPageClient = ({ergo}) => {
 
               <div>
                 <p className={`${styles.detailsTitle}`}>Πελάτης:</p>
-                <p className={`${styles.detailsCategory}`}>Καζίνο Σολάνο</p>
+                <p className={`${styles.detailsCategory}`}>
+                  {client}
+                </p>
               </div>
             </div>
 
@@ -77,7 +97,9 @@ const ErgoPageClient = ({ergo}) => {
 
               <div>
                 <p className={`${styles.detailsTitle}`}>Ημερομηνία:</p>
-                <p className={`${styles.detailsCategory}`}>12 Μαρτίου 2023</p>
+                <p className={`${styles.detailsCategory}`}>
+                  {date}
+                </p>
               </div>
             </div>
 
@@ -93,7 +115,9 @@ const ErgoPageClient = ({ergo}) => {
 
               <div>
                 <p className={`${styles.detailsTitle}`}>Κόστος:</p>
-                <p className={`${styles.detailsCategory}`}>6500€</p>
+                <p className={`${styles.detailsCategory}`}>
+                  {cost}€
+                </p>
               </div>
             </div>
 
@@ -103,67 +127,46 @@ const ErgoPageClient = ({ergo}) => {
           <div className="row my-5 mx-0 mx-md-5">
             <div className="col-12">
               <h2 className={`${styles.projectSummaryTitle} mb-4`}>Περίληψη Έργου</h2>
-              <p className={`${styles.projectSummaryBody} mb-4 text-muted`}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus exercitationem architecto ipsa ex dolorum explicabo et eaque molestiae iure voluptatum? Enim reiciendis aliquam unde modi dolorum magni repellat, minus deserunt.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus exercitationem architecto ipsa ex dolorum explicabo et eaque molestiae iure voluptatum? Enim reiciendis aliquam unde modi dolorum magni repellat, minus deserunt.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus exercitationem architecto ipsa ex dolorum explicabo et eaque molestiae iure voluptatum? Enim reiciendis aliquam unde modi dolorum magni repellat, minus deserunt.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus exercitationem architecto ipsa ex dolorum explicabo et eaque molestiae iure voluptatum? Enim reiciendis aliquam unde modi dolorum magni repellat, minus deserunt.
-              </p>
+
+
+              <div
+                className={`${styles.projectSummaryBody} mb-4 text-muted`}
+                dangerouslySetInnerHTML={{ __html: body }}
+              />
+
+
             </div>
           </div>
 
 
           {/* Προκλήσεις -- Λύσεις */}
-          <div className="row mx-0 mx-md-5">
+          <div className="row mx-0 mx-md-5 h-100">
             {/* Προκλήσεις */}
-            <div className="col-12 col-md-6 mb-4 mb-md-0">
-              <div className={`${styles.detailsCardContainer}`}>
+            <div className="col-12 col-md-6 mb-4 mb-md-0 d-flex">
+              <div className={`${styles.detailsCardContainer} w-100`}>
                 <h3 className={`${styles.detailsCardTitle}`}>Προκλήσεις</h3>
 
-                <ul className={`${styles.detailsCardListContainer}`}>
-                  <li className={`text-muted`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                      <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                      <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                    </svg>
+           
+                <div className={`ulWithSvg `}>
+                  <ul>
+                    {challenges.map((challenge, index) => <li key={index} dangerouslySetInnerHTML={{ __html: challenge.value }} />)}
+                  </ul>
+                </div>
 
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  </li>
-                  <li className={`text-muted`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                      <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                      <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                    </svg>
-
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  </li>
-                </ul>
               </div>
             </div>
 
             {/* Λύσεις */}
-            <div className="col-12 col-md-6">
-              <div className={`${styles.detailsCardContainer}`}>
+            <div className="col-12 col-md-6 d-flex">
+              <div className={`${styles.detailsCardContainer} w-100`}>
                 <h3 className={`${styles.detailsCardTitle}`}>Λύσεις</h3>
 
-                <ul className={`${styles.detailsCardListContainer}`}>
-                  <li className={`text-muted`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                      <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                      <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                    </svg>
+                 <div className={`ulWithSvg `}>
+                  <ul>
+                    {solutions.map((solution, index) => <li key={index} dangerouslySetInnerHTML={{ __html: solution.value }} />)}
+                  </ul>
+                </div>
 
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  </li>
-                  <li className={`text-muted`}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                      <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                      <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                    </svg>
-
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  </li>
-                </ul>
               </div>
             </div>
 
@@ -172,7 +175,7 @@ const ErgoPageClient = ({ergo}) => {
           {/* last Row */}
           <div className={`row mt-5 ${styles.lastRow}`}>
             <div className="col-12 d-flex justify-content-end">
-             
+
               <div className="d-flex justify-content-center align-items-center">
 
                 <div className="me-2">
@@ -180,17 +183,17 @@ const ErgoPageClient = ({ergo}) => {
                     Κάντο να Συμβεί!
                   </p>
                   <p className="mb-0 text-muted">
-                    12 Μαρτίου 2023
+                    {date}
                   </p>
                 </div>
 
                 <div>
                   <Image
-                    src={'/images/homePage/upsoun-main-image.jpg'}
+                    src={img}
                     width={80}
                     height={80} // 373
                     style={{ objectFit: 'cover' }}
-                    alt={'an image'}
+                    alt={title}
                   />
                 </div>
               </div>
