@@ -12,7 +12,9 @@ import ExperienceSection from './ΕxperienceSection/ExperienceSection';
 import ProjectCardItem from './ProjectCardItem/ProjectCardItem';
 
 
-// import Slider from "react-slick";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -32,26 +34,93 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
 
 
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
+
+
+    console.log('homePage: ', { homePage, slider: slider?.data?.[0]?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url });
+
+
+
 
     return (
         <>
 
-            {/*** hero image ***/}
-            <section>
+            <section >
+                <div style={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
+                    <Slider {...settings}>
+                        
+                        <div>
+                            <Image
+                                src="/images/homePage/upsoun-main-image.jpg"
+                                width={1920}
+                                height={950}
+                                alt="Picture of the author"
+                                // style={{ objectFit: "cover" ,top: 0, left: 0, bottom: 0, right: 0}}
+                                // fill={true}
+                                priority={true}
+                            />
 
-                
-                {/* hero image */}
-                <div className={`${styles.mainImageContainer}`} style={{ height: '100vh',  width: '100%'   }}>
+                            <div className={`${styles.titleContainer}`}>
+
+                                <div className={`${styles.text}`}>
+                                    Ανανεώσιμη . Φιλική . Αποδοτική
+                                </div>
+
+                                <h1>
+                                    Φωτοβολταϊλα: Ο οικονομικός τρόπος για ένα πιο πράσινο μέλλον!
+                                </h1>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <Image
+                                src="/images/homePage/upsoun-main-image.jpg"
+                                width={1920}
+                                height={950}
+                                alt="Picture of the author"
+                                style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                            // fill={true}
+                            // priority={true}
+                            />
+
+                            <div className={`${styles.titleContainer}`}>
+
+                                <div className={`${styles.text}`}>
+                                    Ανανεώσιμη . Φιλική . Αποδοτική
+                                </div>
+
+                                <h1>
+                                    Φωτοβολταϊλα: Ο οικονομικός τρόπος για ένα πιο πράσινο μέλλον!
+                                </h1>
+                            </div>
+                        </div>
+                    </Slider>
+                </div>
+            </section>
+
+            {/*** hero image ***/}
+            {/* <section>
+                <div className={`${styles.mainImageContainer}`}
+                //  style={{ height: '100vh', width: '100%', overflow: 'hidden' }}
+                 >
+
                     <Image
                         src="/images/homePage/upsoun-main-image.jpg"
-                            // width={1920}
-                            // height={950}
+                        // width={1920}
+                        // height={950}
                         alt="Picture of the author"
                         style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
                         fill={true}
                         priority={true}
                     />
-             
+
                     <div className={`${styles.titleContainer}`}>
 
                         <div className={`${styles.text}`}>
@@ -65,8 +134,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
                 </div>
 
-
-            </section>
+            </section> */}
 
 
 

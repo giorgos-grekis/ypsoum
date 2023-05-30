@@ -358,3 +358,18 @@ a {
   padding: .5rem;
   border: 1px solid red;
 }
+
+
+.custom-img {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: 100% !important;
+}
+
+.unset-img {
+  width: 100%;
+}
+.unset-img > div {
+  position: unset !important;
+}

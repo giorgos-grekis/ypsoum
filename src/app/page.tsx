@@ -32,7 +32,7 @@ const home_page_props = async () => {
 }
 
 const sliders_props = async () => {
-  const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/jsonapi/node/slider`
+  const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/jsonapi/node/slider?include=field_image`
 
   const res = await fetch(url,
     {
@@ -51,7 +51,9 @@ const sliders_props = async () => {
     throw new Error('Failed to fetch data slider');
   }
 
-  return res.json();
+  const data = await res.json();
+
+  return include(data);
 
 }
 
@@ -79,7 +81,7 @@ const strengths_props = async () => {
 
 }
 
-const project_props = async ()=> {
+const project_props = async () => {
   const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/jsonapi/node/project?include=field_image`
 
   const res = await fetch(url,
@@ -105,7 +107,7 @@ const project_props = async ()=> {
 
 }
 
-const service_props = async ()=> {
+const service_props = async () => {
   const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/jsonapi/node/service?include=field_image&page[limit]=4&page[offset]=0`
 
   const res = await fetch(url,
@@ -131,20 +133,62 @@ const service_props = async ()=> {
 
 }
 
+export async function generateMetadata() {
+
+
+
+  const homePagePromise = home_page_props()
+  const sliderPromise = sliders_props()
+
+
+  const [data_props_res, slider_props_res] = await Promise.allSettled([homePagePromise, sliderPromise])
+
+
+  const data_props = data_props_res.status === 'fulfilled' && data_props_res.value || []
+  const slider_props = slider_props_res.status === 'fulfilled' && slider_props_res.value || []
+
+
+  const title = data_props?.data?.[0]?.attributes?.title
+  let string = data_props?.data[0]?.attributes?.body?.value.replace(/<(.|\n)*?>/g, "").trim().substring(0, 150) || ''
+  const body = string?.substring(0, Math.min(string.length, string.lastIndexOf(" "))) || title;
+  const canonical = ``
+  const main_img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${slider_props?.data?.[0]?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url}` || ''
+
+
+  return {
+    title: `${`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}`,
+    description: body,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_NEXT_URL}/${canonical}`,
+    },
+    openGraph: {
+      title: `${`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}`,
+      description: body,
+      url: `${process.env.NEXT_PUBLIC_NEXT_URL}/${canonical}`,
+      siteName: `${process.env.NEXT_PUBLIC_SITE_NAME}`,
+      images: [
+        {
+          url: main_img,
+          width: 800,
+          height: 600,
+          alt: title,
+        },
+      ],
+      type: 'website',
+    },
+  }
+}
+
 
 
 export default async function Home() {
 
-  // const homePage = await home_page_props()
-  // const slider = await sliders_props()
 
   const homePagePromise = home_page_props()
   const sliderPromise = sliders_props()
   const strengthsPromise = strengths_props()
   const projectPromise = project_props()
   const servicePromise = service_props()
-
-  // const [homePage, slider] = await Promise.allSettled([homePagePromise, sliderPromise])
 
 
   const [homePageProps, strengthsProps, sliderProps, projectProps, serviceProps] = await Promise.allSettled([homePagePromise, strengthsPromise, sliderPromise, projectPromise, servicePromise])
