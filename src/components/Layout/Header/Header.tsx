@@ -5,23 +5,33 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import styles from './header.module.scss';
 import WdLink from '@/components/UI/WdLink';
+import { find_link } from '@/functions/find_link';
 
-const Header = () => {
+const Header = ({ services_props, project_props }) => {
   // const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
+
+  const services = services_props.status === 'fulfilled' && services_props.value || []
+  const projects = project_props.status === 'fulfilled' && project_props.value || []
+
+
+  console.log('headers: ', { services, projects });
+
+
+
   useEffect(() => {
 
     const header = document.getElementById('navbar')!;
 
-    const scrollYFc = () => window.screenY;
-    const widthFc = () => window.innerWidth;
+    // const scrollYFc = () => window.screenY;
+    // const widthFc = () => window.innerWidth;
 
 
-    let lastScrollTop = 0;
+    // let lastScrollTop = 0;
 
     const menuOnScroll = () => {
 
-      const scrollY = scrollYFc();
-      const width = widthFc();
+      // const scrollY = scrollYFc();
+      // const width = widthFc();
 
       let st = window.pageYOffset || document.documentElement.scrollTop;
 
@@ -70,42 +80,43 @@ const Header = () => {
 
               {/* ΥΠΗΡΕΣΙΕΣ */}
               <NavDropdown title="ΥΠΗΡΕΣΙΕΣ" id="nav-dropdown-ΥΠΗΡΕΣΙΕΣ" className={`${styles.link}`}>
-                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΥΠΗΡΕΣΙΕΣ
-                  </WdLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΥΠΗΡΕΣΙΕΣ
-                  </WdLink>
-                </NavDropdown.Item>
+                {services.data.map((service, index) => {
 
-                <NavDropdown.Item href="#action/3.3">
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΥΠΗΡΕΣΙΕΣ
-                  </WdLink>
-                </NavDropdown.Item>
+                  const title = service?.attributes?.title
+                  const link = find_link(service, 'yphresia')
+
+                  return (<NavDropdown.Item className={`${styles.link_dropdown_container}`} key={index}>
+                    <WdLink href={link} className={`${styles.link}`}>
+                      {title}
+                    </WdLink>
+                  </NavDropdown.Item>)
+                })}
+
               </NavDropdown>
 
               {/*  ΤΑ ΕΡΓΑ ΜΑΣ */}
               <NavDropdown title="ΤΑ ΕΡΓΑ ΜΑΣ" id="nav-dropdown-ΤΑ-ΕΡΓΑ-ΜΑΣ" className={`${styles.link}`}>
+
                 <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΤΑ ΕΡΓΑ ΜΑΣ
-                  </WdLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΤΑ ΕΡΓΑ ΜΑΣ
+                  <WdLink href={`/erga`} className={`${styles.link}`}>
+                    OΛΑ ΤΑ ΕΡΓΑ ΜΑΣ
                   </WdLink>
                 </NavDropdown.Item>
 
-                <NavDropdown.Item href="#action/3.3">
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΤΑ ΕΡΓΑ ΜΑΣ
-                  </WdLink>
-                </NavDropdown.Item>
+
+                {projects.data.map((project, index) => {
+
+                  const title = project?.attributes?.title
+                  const link = find_link(project, 'ergo')
+
+                  return (<NavDropdown.Item className={`${styles.link_dropdown_container}`} key={index}>
+                    <WdLink href={link} className={`${styles.link}`}>
+                      {title}
+                    </WdLink>
+                  </NavDropdown.Item>)
+                })}
+
+            
               </NavDropdown>
 
 

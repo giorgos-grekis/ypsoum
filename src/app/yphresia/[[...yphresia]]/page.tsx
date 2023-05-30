@@ -75,7 +75,7 @@ async function getAllServicesData () {
 
 const YphresiaPage = async ({ params: {yphresia} }) => {
 
-    const data_promie = await getServiceData(yphresia)
+    const data_promie = getServiceData(yphresia)
     const all_services_promise = getAllServicesData()
 
     const [data_props, all_servive_props] = await Promise.allSettled([data_promie, all_services_promise])
