@@ -27,8 +27,7 @@ async function getAllServicesData() {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-      },
-      next: { revalidate: 1 }
+      }
     }
   )
 
@@ -53,8 +52,7 @@ async function getAllProjectData() {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-      },
-      next: { revalidate: 1 }
+      }
     }
   )
 
