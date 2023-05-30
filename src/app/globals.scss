@@ -8,6 +8,7 @@
   // colors
   --primary-color: #1cbfaa;
   --secondary-color: #1388d7;
+  --danger-color: #ed4337;
 
 
   // transitions
@@ -38,10 +39,12 @@
 /*** Colors ***/
 $primary: #1cbfaa;
 $secondary: #1388d7;
+$danger: #ed4337;
 
 $theme-colors: (
   "primary": $primary,
-  "secondary": $secondary
+  "secondary": $secondary,
+  "danger": $danger
 );
 
 // border
@@ -342,4 +345,16 @@ a {
   height: 3rem;
   width: 3rem;
   display: block;
+}
+
+
+// FORM
+
+.form-error{
+  color: red;
+  line-height: 1;
+  font-weight: normal;
+  background-color: white;
+  padding: .5rem;
+  border: 1px solid red;
 }

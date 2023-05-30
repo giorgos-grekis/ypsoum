@@ -25,12 +25,11 @@ const Header = () => {
 
       let st = window.pageYOffset || document.documentElement.scrollTop;
 
-      if(st >= 200){
+      if (st >= 200) {
         header.classList.add('bg-white')
       } else {
         header.classList.remove('bg-white')
       }
-      // console.log('menuOnScroll: ', {scrollY, width, st});
 
     }
 
@@ -63,28 +62,11 @@ const Header = () => {
             <Nav className="mx-auto">
 
               {/* ΑΡΧΙΚΗ */}
-              <NavDropdown title=" ΑΡΧΙΚΗ" id="nav-dropdown-ΑΡΧΙΚΗ" className={`${styles.link}`}>
-                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΑΡΧΙΚΗ
-                  </WdLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΑΡΧΙΚΗ
-                  </WdLink>
-                </NavDropdown.Item>
-
-                <NavDropdown.Item href="#action/3.3">
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΑΡΧΙΚΗ
-                  </WdLink>
-                </NavDropdown.Item>
-                {/* <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item> */}
-              </NavDropdown>
+              <Nav.Item className={`${styles.link}`}>
+                <WdLink href={`/`} className={`${styles.link} nav-link`}>
+                  ΑΡΧΙΚΗ
+                </WdLink>
+              </Nav.Item>
 
               {/* ΥΠΗΡΕΣΙΕΣ */}
               <NavDropdown title="ΥΠΗΡΕΣΙΕΣ" id="nav-dropdown-ΥΠΗΡΕΣΙΕΣ" className={`${styles.link}`}>
@@ -126,45 +108,22 @@ const Header = () => {
                 </NavDropdown.Item>
               </NavDropdown>
 
-              {/* Η ΕΤΑΙΡΕΙΑ */}
-              <NavDropdown title="Η ΕΤΑΙΡΕΙΑ " id="nav-dropdown-Η-ΕΤΑΙΡΕΙΑ " className={`${styles.link}`}>
-                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    Η ΕΤΑΙΡΕΙΑ
-                  </WdLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    Η ΕΤΑΙΡΕΙΑ
-                  </WdLink>
-                </NavDropdown.Item>
 
-                <NavDropdown.Item href="#action/3.3">
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    Η ΕΤΑΙΡΕΙΑ
-                  </WdLink>
-                </NavDropdown.Item>
-              </NavDropdown>
+              {/* Η ΕΤΑΙΡΕΙΑ */}
+              <Nav.Item className={`${styles.link}`}>
+                <WdLink href={`/about-us`} className={`${styles.link} nav-link`}>
+                  Η ΕΤΑΙΡΕΙΑ
+                </WdLink>
+              </Nav.Item>
+
+
 
               {/* ΕΠΙΚΟΙΝΩΝΙΑ */}
-              <NavDropdown title="ΕΠΙΚΟΙΝΩΝΙΑ " id="nav-dropdown-ΕΠΙΚΟΙΝΩΝΙΑ " className={`${styles.link}`}>
-                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΕΠΙΚΟΙΝΩΝΙΑ
-                  </WdLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΕΠΙΚΟΙΝΩΝΙΑ
-                  </WdLink>
-                </NavDropdown.Item>
-
-                <NavDropdown.Item href="#action/3.3">
-                  <WdLink href={`/`} className={`${styles.link}`}>
-                    ΕΠΙΚΟΙΝΩΝΙΑ
-                  </WdLink>
-                </NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Item className={`${styles.link}`}>
+                <WdLink href={`/contact`} className={`${styles.link} nav-link`}>
+                  ΕΠΙΚΟΙΝΩΝΙΑ
+                </WdLink>
+              </Nav.Item>
 
 
             </Nav>

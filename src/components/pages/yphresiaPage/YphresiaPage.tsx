@@ -1,23 +1,136 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import MainImage from '@/components/MainImage/MainImage'
+import { useForm } from 'react-hook-form';
+import { usePathname } from 'next/navigation';
 
 import styles from './uphresiaPage.module.scss'
 import WdLink from '@/components/UI/WdLink'
 import Image from 'next/image'
+import { find_img_alt } from '@/functions/find_img_alt'
+import { find_link } from '@/functions/find_link'
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const YphresiaPageClient = ({service}) => {
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
-    console.log('service: ', service?.data?.[0]?.attributes?.field_second_body?.value);
+import { toast } from 'react-toastify';
 
+const YphresiaPageClient = ({ service_props, all_services_props }) => {
+
+    const [show, setShow] = useState({ show: false, message: '' });
+    const pathname = usePathname()
+
+
+    const formSchema = z.object({
+        name: z.string().min(3, "Το όνομα πρέπει να έχει το ελάχιστο 3 χαρακτήρες"),
+        phone: z.string().optional(),
+        email: z.string().email('To email που δώσατε δεν είναι σωστό'),
+        subject: z.string().min(3, "Το Θέμα πρέπει να έχει το ελάχιστο 3 χαρακτήρες"),
+        message: z.string().min(3, 'Το μύνημα πρέπει να έχει το ελάχιστο 3 χαρακτήρες'),
+    }).refine(data => !!data.phone || !!data.email,
+        { message: 'Τηλέφωνο ή Email', path: ['phone'] }
+    )
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+
+    } = useForm({
+        resolver: zodResolver(formSchema),
+    });
+
+
+    // async function sendMessage(data_form) {
+    //     'use server'
+    //     const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/wdapi/webform/submit`;
+
+    //     const body = {
+    //         webform_id: "contact",
+    //         webform_data: {
+    //             email: data_form.email,
+    //             name: data_form.name,
+    //             message: data_form.message,
+    //             phone: data_form.phone,
+    //             subject: data_form.subject
+    //         },
+    //     };
+
+
+    //    const res = await  fetch(url, {
+    //         method: "POST",
+    //         cache: "no-cache",
+    //         headers: {
+    //             "Accept": "application/json",
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(body)
+    //     })
+
+    //     return await res.json()
+    // }
+
+    const onSubmit = async (data_form) => {
+
+        const body = {
+            email: data_form.email,
+            name: data_form.name,
+            message: data_form.message,
+            phone: data_form.phone,
+            subject: data_form.subject
+        };
+
+        try {
+
+            void await fetch(`${process.env.NEXT_PUBLIC_NEXT_URL}/api/form`, {
+                method: "POST",
+                // cache: "no-cache",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body)
+            })
+
+            setShow({ show: true, message: 'Το μύνημά σας στάλθηκε' })
+
+        } catch (error) {
+            console.error(error)
+            setShow({ show: true, message: 'Κάτι πήγε στράβα' })
+        }
+
+
+
+    }
+
+
+
+    const service = service_props.status === 'fulfilled' && service_props.value || []
+    const all_services = all_services_props.status === 'fulfilled' && all_services_props.value || []
+
+
+    const title = service?.data?.[0]?.attributes?.title
     const ul = service?.data?.[0]?.attributes?.field_second_body?.value
-    
+
+    const main_img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.data?.[0]?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url}`
+    const alt_main_img = find_img_alt(service.fileMeta, service?.data?.[0]?.relationships?.field_image?.data?.[0].id, title)
+    const body_1 = service?.data?.[0]?.attributes?.body?.value
+
+    const secondary_img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.data?.[0]?.relationships?.field_second_image?.data?.[0]?.attributes?.uri?.url}`
+    const alt_secondary_img = find_img_alt(service.fileMeta, service?.data?.[0]?.relationships?.field_second_image?.data?.[0].id, title)
+
+    const body_2 = service?.data?.[0]?.attributes?.field_third_body?.value
+
+    console.log({ errors })
+
 
     return (
         <>
 
             {/* main image */}
-            <MainImage title={'Μελέτη Φωτοβολταϊκων'} />
+            <MainImage title={title} />
 
             <section>
                 <div className="container">
@@ -31,36 +144,15 @@ const YphresiaPageClient = ({service}) => {
 
                                 <div className={styles.servicesTitle}>Τύπος υπηρεσίας</div>
 
-                                <div className={`${styles.servicesLink} ${styles.active}`}>
-                                    <WdLink href={`/`}>
-                                        τύπος_1
-                                    </WdLink>
-                                </div>
+                                {all_services?.data.map((service, index) => {
 
-                                <div className={`${styles.servicesLink}`}>
-                                    <WdLink href={`/`}>
-                                        τύπος_2
-                                    </WdLink>
-                                </div>
+                                    const title = service?.attributes?.title
+                                    const link = find_link(service, 'yphresia')
 
-                                <div className={`${styles.servicesLink}`}>
-                                    <WdLink href={`/`}>
-                                        τύπος_3
-                                    </WdLink>
-                                </div>
-
-                                <div className={`${styles.servicesLink}`}>
-                                    <WdLink href={`/`}>
-                                        τύπος_4
-                                    </WdLink>
-                                </div>
-
-                                <div className={`${styles.servicesLink}`}>
-                                    <WdLink href={`/`}>
-                                        τύπος_5
-                                    </WdLink>
-                                </div>
-
+                                    return (<WdLink href={link} className={`${styles.servicesLink} ${link === pathname ? styles.active : ''}`} key={index}>
+                                        {title}
+                                    </WdLink>)
+                                })}
 
 
                             </div>
@@ -70,23 +162,48 @@ const YphresiaPageClient = ({service}) => {
                                 <div className='text-white fw-bold'>
                                     Επενδύστε στο μέλλον & μειώστε το κόστς των λογαριασμών σας!
 
-                                    <form>
+                                    <form onSubmit={handleSubmit((data) => onSubmit(data))}>
 
                                         <div className={``}>
-                                            <input type="text" placeholder="Όνομα" className={`${styles.formInput}`} />
+                                            <input type="text" placeholder="Όνομα" className={`${styles.formInput} ${errors?.name ? 'border-danger' : ''}`} {...register("name")} />
                                         </div>
 
-                                        <div className={``}>
-                                            <input type="text" placeholder="Τηλέφωνο - email" className={`${styles.formInput}`} />
-                                        </div>
+                                        {errors?.name && <div className="form-error">
+                                            {errors.name.message}
+                                        </div>}
+
 
                                         <div className={``}>
-                                            <input type="text" placeholder="Θέμα" className={`${styles.formInput}`} />
+                                            <input type="text" placeholder="Τηλέφωνο" className={`${styles.formInput}`}  {...register('phone')} />
                                         </div>
 
+                                        {errors?.phone && <div className="form-error">
+                                            {errors.phone.message}
+                                        </div>}
+
                                         <div className={``}>
-                                            <textarea placeholder="Κείμενο" className={`${styles.formInput}`} />
+                                            <input type="email" placeholder="email" className={`${styles.formInput}`}  {...register('email')} />
                                         </div>
+
+                                        {errors?.email && <div className="form-error">
+                                            {errors.email.message}
+                                        </div>}
+
+                                        <div className={``}>
+                                            <input type="text" placeholder="Θέμα" className={`${styles.formInput}`} {...register('subject')} />
+                                        </div>
+
+                                        {errors?.subject && <div className="form-error">
+                                            {errors.subject.message}
+                                        </div>}
+
+                                        <div className={``}>
+                                            <textarea placeholder="Κείμενο" className={`${styles.formInput}`}  {...register('message')} />
+                                        </div>
+
+                                        {errors?.message && <div className="form-error">
+                                            {errors.message.message}
+                                        </div>}
 
                                         <div className='d-flex justify-content-center align-items-center mt-3'>
                                             <button type='submit' className="btn btn-secondary text-white fw-bold py-3 px-4">
@@ -104,17 +221,18 @@ const YphresiaPageClient = ({service}) => {
                         <div className="col-12 col-lg-8 order-0 order-lg-1">
                             <div className={styles.imageContainer}>
                                 <Image
-                                    src="/images/homePage/upsoun-main-image.jpg"
-                                    alt="Contact page image"
+                                    src={main_img}
+                                    alt={alt_main_img}
                                     style={{ objectFit: "cover" }}
                                     fill={true}
                                 />
                             </div>
 
-                            <p className='text-muted mt-1'>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deserunt eveniet iste dolorem quia natus nostrum, illum molestias maiores harum aspernatur vel, temporibus voluptas. Iusto at dignissimos minima minus quibusdam.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione deserunt eveniet iste dolorem quia natus nostrum, illum molestias maiores harum aspernatur vel, temporibus voluptas. Iusto at dignissimos minima minus quibusdam.
-                            </p>
+                            <div
+                                className='text-muted mt-3'
+                                dangerouslySetInnerHTML={{ __html: body_1 }}
+                            />
+
 
                             <div className="row my-5">
                                 {/* επισκόπηση υπηρεσίας */}
@@ -123,62 +241,11 @@ const YphresiaPageClient = ({service}) => {
                                         Επισκόπηση Υπηρεσίας
                                     </p>
 
-                                    <div 
+                                    <div
                                         className='ulWithSvg'
-                                        dangerouslySetInnerHTML={{__html: ul}}
+                                        dangerouslySetInnerHTML={{ __html: ul }}
                                     />
 
-                                    {/* <ul className='ulWithSvg'>
-                                        <li>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                                                <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                                                <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                            </svg>
-                                            <span className="text-muted ms-2">
-                                                dfasfsdaf
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                                                <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                                                <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                            </svg>
-                                            <span className="text-muted ms-2">
-                                                dfasfsdaf
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                                                <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                                                <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                            </svg>
-                                            <span className="text-muted ms-2">
-                                                dfasfsdaf
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                                                <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                                                <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                            </svg>
-                                            <span className="text-muted ms-2">
-                                                dfasfsdaf
-                                            </span>
-                                        </li>
-
-                                        <li>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-check2-square" viewBox="0 0 16 16">
-                                                <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z" />
-                                                <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z" />
-                                            </svg>
-                                            <span className="text-muted ms-2">
-                                                dfasfsdaf
-                                            </span>
-                                        </li>
-                                    </ul> */}
 
                                 </div>
 
@@ -186,8 +253,8 @@ const YphresiaPageClient = ({service}) => {
                                 <div className="col-12 col-md-6">
                                     <div style={{ width: '100%', height: '100%', position: 'relative', minHeight: '300px' }}>
                                         <Image
-                                            src="/images/homePage/upsoun-main-image.jpg"
-                                            alt="Contact page image"
+                                            src={secondary_img}
+                                            alt={alt_secondary_img}
                                             style={{ objectFit: "cover" }}
                                             fill={true}
                                         />
@@ -196,15 +263,12 @@ const YphresiaPageClient = ({service}) => {
                             </div>
 
 
-                            <p className="text-muted">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, atque labore officiis reiciendis, quibusdam autem placeat, rerum veritatis aspernatur molestiae eligendi! Porro inventore soluta magnam in at ipsum ullam. Autem.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, atque labore officiis reiciendis, quibusdam autem placeat, rerum veritatis aspernatur molestiae eligendi! Porro inventore soluta magnam in at ipsum ullam. Autem.
-                            </p>
+                            <div
+                                className="text-muted"
+                                dangerouslySetInnerHTML={{ __html: body_2 }}
+                            />
 
-                            <p className="text-muted">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, atque labore officiis reiciendis, quibusdam autem placeat, rerum veritatis aspernatur molestiae eligendi! Porro inventore soluta magnam in at ipsum ullam. Autem.
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, atque labore officiis reiciendis, quibusdam autem placeat, rerum veritatis aspernatur molestiae eligendi! Porro inventore soluta magnam in at ipsum ullam. Autem.
-                            </p>
+
 
 
                             {/* icons */}
@@ -285,6 +349,25 @@ const YphresiaPageClient = ({service}) => {
                 </div>
             </section>
 
+
+            <Modal show={show.show} onHide={() => setShow(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        {/* Modal heading */}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {show.message}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShow(false)}>
+                        Κλείσιμο
+                    </Button>
+                    {/* <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button> */}
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

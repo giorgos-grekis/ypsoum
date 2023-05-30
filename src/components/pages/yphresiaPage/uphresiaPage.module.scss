@@ -31,6 +31,7 @@
     &:hover {
         background: var(--secondary-color);
         cursor: pointer;
+        color: white;
 
         a {
             color: white;
@@ -40,6 +41,7 @@
     &.active {
         position: relative;
         background: var(--secondary-color);
+        color: white;
 
         a {
             color: white;

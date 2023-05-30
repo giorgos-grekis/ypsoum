@@ -2,7 +2,6 @@
 import React from 'react'
 import MainImage from '@/components/MainImage/MainImage'
 import Image from 'next/image'
-import WdLink from '@/components/UI/WdLink'
 import Testimoials from '@/components/Testimonials/Testimoials'
 import { find_img_alt } from '@/functions/find_img_alt'
 
