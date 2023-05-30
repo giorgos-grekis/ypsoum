@@ -4,8 +4,6 @@ import { Inter } from 'next/font/google'
 
 import Header from '@/components/Layout/Header/Header'
 import Footer from '@/components/Layout/Footer/Footer'
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 
 import './globals.scss'
@@ -27,18 +25,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         {children}
         <Footer />
-
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          // hideProgressBar
-          newestOnTop={true}
-          closeOnClick={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme={'colored'}
-        />
       </body>
 
     </html>

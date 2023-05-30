@@ -4,7 +4,6 @@ import ErgoPageClient from '@/components/pages/ergoPage/ergoPage'
 import include from '@/functions/jsonapi/include'
 
 
-
 async function getErgoData(ergo) {
 
   const path = ergo.join('/')

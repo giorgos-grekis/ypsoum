@@ -15,13 +15,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import { toast } from 'react-toastify';
 
 const YphresiaPageClient = ({ service_props, all_services_props }) => {
 
     const [show, setShow] = useState({ show: false, message: '' });
-    const pathname = usePathname()
 
+    const pathname = usePathname()
 
     const formSchema = z.object({
         name: z.string().min(3, "Το όνομα πρέπει να έχει το ελάχιστο 3 χαρακτήρες"),
@@ -42,35 +41,6 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
         resolver: zodResolver(formSchema),
     });
 
-
-    // async function sendMessage(data_form) {
-    //     'use server'
-    //     const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/wdapi/webform/submit`;
-
-    //     const body = {
-    //         webform_id: "contact",
-    //         webform_data: {
-    //             email: data_form.email,
-    //             name: data_form.name,
-    //             message: data_form.message,
-    //             phone: data_form.phone,
-    //             subject: data_form.subject
-    //         },
-    //     };
-
-
-    //    const res = await  fetch(url, {
-    //         method: "POST",
-    //         cache: "no-cache",
-    //         headers: {
-    //             "Accept": "application/json",
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify(body)
-    //     })
-
-    //     return await res.json()
-    // }
 
     const onSubmit = async (data_form) => {
 
@@ -101,8 +71,6 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
             setShow({ show: true, message: 'Κάτι πήγε στράβα' })
         }
 
-
-
     }
 
 
@@ -122,8 +90,6 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
     const alt_secondary_img = find_img_alt(service.fileMeta, service?.data?.[0]?.relationships?.field_second_image?.data?.[0].id, title)
 
     const body_2 = service?.data?.[0]?.attributes?.field_third_body?.value
-
-    console.log({ errors })
 
 
     return (
