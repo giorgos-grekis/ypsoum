@@ -205,6 +205,13 @@ a {
 
 // FORM
 
+.form-error-general {
+    line-height: 1;
+    color: red;
+    margin-top: -0.8rem;
+    // margin-bottom: 1rem;
+}
+
 .form-error {
     color: red;
     line-height: 1;

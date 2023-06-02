@@ -1,5 +1,14 @@
-// servicesContainer
+// imageContainer
+.imageContainer{
+    display: block;
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
 
+
+
+// servicesContainer
 .servicesContainer {
     border-radius: 5px;
     box-shadow: 10px 10px 10px #f0f0f0;
@@ -59,31 +68,3 @@
     }
 }
 
-
-// contactFormContainer
-
-.contactFormContainer {
-    border-radius: 5px;
-    // box-shadow: 10px 10px 10px #f0f0f0;
-    background: var(--primary-color);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem 3rem;
-}
-
-.formInput {
-    border: 1px solid #dee2e6;
-    padding: 0.8rem 1.2rem;
-    margin: 0.5rem 0;
-    width: 100%;
-}
-
-// imageContainer
-.imageContainer{
-    display: block;
-    width: 100%;
-    height: 400px;
-    position: relative;
-}
