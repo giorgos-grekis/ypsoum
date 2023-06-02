@@ -11,7 +11,17 @@ $theme-colors: (
 
 // border
 $border-color-translucent: inherit;
+
+
+// dropdown
 $dropdown-border-radius: 0;
+$dropdown-padding-x: 0;
+$dropdown-padding-y:  1rem; 
+$dropdown-link-hover-bg: transparent;
+$dropdown-dark-link-hover-color: transparent;
+$dropdown-dark-link-hover-bg: transparent;
+$dropdown-item-padding-y: 0.5rem;
+$dropdown-item-padding-x: 2rem;
 
 
 /*** Buttons ***/

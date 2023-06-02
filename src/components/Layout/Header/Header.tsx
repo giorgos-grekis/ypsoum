@@ -10,7 +10,7 @@ import { find_link } from '@/functions/find_link';
 import Image from 'next/image';
 
 const Header = ({ services_props, project_props }) => {
-  // const handleSelect = (eventKey) => alert(`selected ${eventKey}`);
+
 
   const pathname = usePathname()
 
@@ -18,10 +18,8 @@ const Header = ({ services_props, project_props }) => {
   const projects = project_props.status === 'fulfilled' && project_props.value || []
 
 
-  console.log('headers pathname: ', pathname);
 
-
-
+  // add scroll event listener
   useEffect(() => {
 
     const header = document.getElementById('navbar')!;
@@ -29,7 +27,6 @@ const Header = ({ services_props, project_props }) => {
     const logo_mobile = document.getElementById('logo-mobile')!;
 
 
- 
     const menuOnScroll = () => {
 
       let st = window.pageYOffset || document.documentElement.scrollTop;
@@ -102,16 +99,16 @@ const Header = ({ services_props, project_props }) => {
 
               {/* ΥΠΗΡΕΣΙΕΣ */}
               <NavDropdown title="ΥΠΗΡΕΣΙΕΣ" id="nav-dropdown-ΥΠΗΡΕΣΙΕΣ" className={`${styles.link} ${pathname.startsWith('/yphresia') ? styles.active : ''}`}>
+
                 {services.data.map((service, index) => {
 
                   const title = service?.attributes?.title
                   const link = find_link(service, 'yphresia')
 
-                  return (<NavDropdown.Item className={`${styles.link_dropdown_container}`} key={index}>
-                    <WdLink href={link} className={`${styles.link}`}>
-                      {title}
-                    </WdLink>
-                  </NavDropdown.Item>)
+                  return (<WdLink href={link} className={`${styles.simpleLink} dropdown-item`} key={index}>
+                    {title}
+                  </WdLink>)
+
                 })}
 
               </NavDropdown>
@@ -119,11 +116,10 @@ const Header = ({ services_props, project_props }) => {
               {/*  ΤΑ ΕΡΓΑ ΜΑΣ */}
               <NavDropdown title="ΤΑ ΕΡΓΑ ΜΑΣ" id="nav-dropdown-ΤΑ-ΕΡΓΑ-ΜΑΣ" className={`${styles.link} ${pathname.startsWith('/erg') ? styles.active : ''}`}>
 
-                <NavDropdown.Item className={`${styles.link_dropdown_container}`}>
-                  <WdLink href={`/erga`} className={`${styles.link}`}>
-                    OΛΑ ΤΑ ΕΡΓΑ ΜΑΣ
-                  </WdLink>
-                </NavDropdown.Item>
+
+                <WdLink href={`/erga`} className={`${styles.simpleLink} dropdown-item`}>
+                  Όλα τα έργα μας
+                </WdLink>
 
 
                 {projects.data.map((project, index) => {
@@ -131,13 +127,10 @@ const Header = ({ services_props, project_props }) => {
                   const title = project?.attributes?.title
                   const link = find_link(project, 'ergo')
 
-                  return (<NavDropdown.Item className={`${styles.link_dropdown_container}`} key={index}>
-                    <WdLink href={link} className={`${styles.link}`}>
-                      {title}
-                    </WdLink>
-                  </NavDropdown.Item>)
+                  return (<WdLink href={link} className={`${styles.simpleLink} dropdown-item`} key={index}>
+                    {title}
+                  </WdLink>)
                 })}
-
 
               </NavDropdown>
 

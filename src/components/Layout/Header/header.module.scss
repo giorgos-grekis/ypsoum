@@ -23,9 +23,7 @@
     width: 100%; // remove if displabe react-bootstrap
 }
 
-.toggleContainer {
-    margin: 0 auto;
-}
+
 
 .borderBottom {
     border-bottom: 1px solid black;
@@ -39,13 +37,7 @@
     align-items: center;
 }
 
-.linksContaier {
-    display: flex;
-    height: 100%;
-    flex: 5;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .searchContainer {
     flex: 1;
@@ -56,15 +48,15 @@
     color: white;
 }
 
-.searchIcon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 1rem;
+// .searchIcon {
+//     width: 1.5rem;
+//     height: 1.5rem;
+//     margin-right: 1rem;
 
-    &:hover {
-        cursor: pointer;
-    }
-}
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }
 
 .link {
     color: white;
@@ -86,9 +78,17 @@
     }
 }
 
+.simpleLink{
+    color: black !important;
+
+    &:hover{
+        color: var(--primary-color) !important;
+    }
+}
+
 
 .link_dropdown_container {
-    padding: 0.5rem 1rem;
+    // padding: 0.5rem 1rem;
     a {
        color: black;
     }
@@ -115,3 +115,30 @@
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// remove class
+
+// .linksContaier {
+//     display: flex;
+//     height: 100%;
+//     flex: 5;
+//     align-items: center;
+//     justify-content: center;
+// }
+
+// .toggleContainer {
+//     margin: 0 auto;
+// }

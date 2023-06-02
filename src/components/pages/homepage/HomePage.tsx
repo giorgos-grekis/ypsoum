@@ -53,6 +53,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
         <>
 
             <section >
+             
 
                 <div
                     style={{ overflow: 'hidden' }}
@@ -67,14 +68,14 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                             const img_path = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${img}`
                             const alt = slider?.fileMeta?.[img_id]?.alt ?? field_h2
 
-
+                            
                             return (<div className={`${styles.mainSliderImageContainer}`} key={index} style={{ overflow: 'hidden' }}>
                                 <Image
                                     src={img_path}
                                     width={1920}
                                     height={950}
                                     alt={alt}
-                                    style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
+                                    style={{ objectFit: "cover", maxWidth: '100%', height: 'auto', maxHeight: '950px' }}
                                     priority={index === 0 ? true : false}
                                 />
 
