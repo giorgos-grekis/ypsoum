@@ -1,8 +1,17 @@
+'use client'
 import React from 'react'
 import styles from './footer.module.scss'
 import WdLink from '@/components/UI/WdLink'
 
-const Footer = () => {
+const Footer = ({contact_props}) => {
+
+  const footer = contact_props.status === 'fulfilled' ? contact_props.value : []
+
+  const phone = footer?.data?.[0]?.attributes?.field_phone
+  const email = footer?.data?.[0]?.attributes?.field_email
+  const location = footer?.data?.[0]?.attributes?.field_location
+
+  
   return (
     <footer className={`position-relative pt-6 pt-md-8 pt-lg-10 pt-xl-12 ${styles.footerContianer}`}>
 
@@ -34,7 +43,8 @@ const Footer = () => {
                     </div>
                     {/* display-29 display-md-28 display-xl-27 */}
                     <address className={`text-muted h4`}>
-                      Παπαγιαννη 46, Μανδρα
+                      {/* Παπαγιαννη 46, Μανδρα */}
+                      {location}
                     </address>
                   </div>
                 </div>
@@ -50,13 +60,13 @@ const Footer = () => {
                     </div>
                     {/* email */}
                     <p className={`${styles.email} fs-5`}>
-                      <a href="mailto:ypsoun@gmail.com" className="">
-                        ypsoun@gmail.com
+                      <a href={`mailto:${email}`} className="">
+                        {email}
                       </a>
                     </p>
                     {/* phone */}
-                    <a href="tel:+306941471277" className={`${styles.phone}`}>
-                      6941471277
+                    <a href={`tel:+30${phone}`} className={`${styles.phone}`}>
+                      {phone}
                     </a>
                   </div>
                 </div>
