@@ -11,13 +11,37 @@ import { find_link } from '@/functions/find_link';
 import ExperienceSection from './ΕxperienceSection/ExperienceSection';
 import ProjectCardItem from './ProjectCardItem/ProjectCardItem';
 
-
-
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 
-// import { Swiper, SwiperSlide } from 'swiper/react';
+// icon
+import SolarPanel from '@/components/UI/svgsComponents/SolarPanel';
+import Writing from '@/components/UI/svgsComponents/Writing';
+import Profit from '@/components/UI/svgsComponents/Profit';
+import Blueprint from '@/components/UI/svgsComponents/Blueprint';
+
+
+
+function find_services_icon (id) {
+    // Μελέτη φωτοβολταϊκών
+    if(id === '3d5879dc-d37c-47d8-b59e-e3fb97103cee') {
+        return <SolarPanel />
+    }
+
+    // Αδειοδότηση
+    if(id === '7e328016-c07e-4394-8006-5322959b2aa8'){
+        return <Writing />
+    }
+
+    // Εγκατάσταση Φωτοβολταϊκών
+    if(id === '8a9556b3-429e-4baa-9cc4-f1f82198456f'){
+        return <Profit />
+    }
+
+    //Εξοικονομώ
+    if (id === '2a46eb12-c4ca-429f-92ba-1af33c03b6e1'){
+        return <Blueprint />
+    }
+}
 
 
 
@@ -103,36 +127,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                 </div>
             </section>
 
-            {/*** hero image ***/}
-            {/* <section>
-                <div className={`${styles.mainImageContainer}`}
-                //  style={{ height: '100vh', width: '100%', overflow: 'hidden' }}
-                 >
-
-                    <Image
-                        src="/images/homePage/upsoun-main-image.jpg"
-                        // width={1920}
-                        // height={950}
-                        alt="Picture of the author"
-                        style={{ objectFit: "cover", top: 0, left: 0, bottom: 0, right: 0 }}
-                        fill={true}
-                        priority={true}
-                    />
-
-                    <div className={`${styles.titleContainer}`}>
-
-                        <div className={`${styles.text}`}>
-                            Ανανεώσιμη . Φιλική . Αποδοτική
-                        </div>
-
-                        <h1>
-                            Φωτοβολταϊλα: Ο οικονομικός τρόπος για ένα πιο πράσινο μέλλον!
-                        </h1>
-                    </div>
-
-                </div>
-
-            </section> */}
+        
 
 
 
@@ -146,17 +141,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                             const title = strength?.attributes?.title
                             const body = strength?.attributes?.body?.value
 
-
-
-
-
-
-
-
-
                             return (<div className="col-12 col-lg-4" key={index}>
-
-
 
                                 <div className={`${styles.iconItem}`}>
                                     {/* icon */}
@@ -300,12 +285,15 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
                         {services?.data.map((service, index) => {
 
+                            console.log('service: ', typeof service.id);
+                            
+
                             const title = service?.attributes?.title
                             const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.relationships?.field_image?.data?.[0]?.attributes?.uri.url}`
                             const body = service?.attributes?.body?.value
-
-
                             const link = find_link(service, 'yphresia')
+
+                            const icon = find_services_icon(service.id)
 
                             return (
                                 <WdLink href={`${link}`} key={index} className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5 px-2" >
@@ -314,6 +302,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                                         title={title}
                                         img={img}
                                         body={body}
+                                        icon={icon}
                                     />
 
                                 </WdLink>

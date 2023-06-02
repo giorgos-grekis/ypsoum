@@ -12,7 +12,7 @@ import Image from 'next/image';
 const Header = ({ services_props, project_props }) => {
 
 
-  const pathname = usePathname()
+  const pathname = usePathname()!
 
   const services = services_props.status === 'fulfilled' && services_props.value || []
   const projects = project_props.status === 'fulfilled' && project_props.value || []
