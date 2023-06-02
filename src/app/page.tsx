@@ -135,8 +135,6 @@ const service_props = async () => {
 
 export async function generateMetadata() {
 
-
-
   const homePagePromise = home_page_props()
   const sliderPromise = sliders_props()
 
@@ -161,6 +159,7 @@ export async function generateMetadata() {
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_NEXT_URL}/${canonical}`,
     },
+
     openGraph: {
       title: `${`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}`,
       description: body,

@@ -12,12 +12,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-
 import styles from './contactForm.module.scss'
 
 const ContactForm = () => {
 
-    const [show, setShow] = useState({ show: false, message: '' });
+    const [show, setShow] = useState({ message: '' });
 
     const formSchema = z.object({
         name: z.string().min(3, "Το όνομα πρέπει να έχει το ελάχιστο 3 χαρακτήρες"),
@@ -61,11 +60,11 @@ const ContactForm = () => {
                 body: JSON.stringify(body)
             })
 
-            setShow({ show: true, message: 'Το μύνημά σας στάλθηκε' })
+            setShow({ message: 'Το μύνημά σας στάλθηκε' })
 
         } catch (error) {
             console.error(error)
-            setShow({ show: true, message: 'Κάτι πήγε στράβα' })
+            setShow({ message: 'Κάτι πήγε στράβα' })
         }
 
     }
@@ -158,24 +157,21 @@ const ContactForm = () => {
             </section>
 
 
-            <Modal show={show.show} onHide={() => setShow(false)}>
+            <Modal show={!!show.message} onHide={() => setShow({message: ""})}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {/* Modal heading */}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     {show.message}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShow(false)}>
+                    <Button variant="secondary text-white" onClick={() => setShow({message: ""})}>
                         Κλείσιμο
                     </Button>
-                    {/* <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button> */}
+                   
                 </Modal.Footer>
-            </Modal>``
+            </Modal>
 
         </>
 

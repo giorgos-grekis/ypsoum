@@ -16,9 +16,17 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
+interface FormInputs {
+    name: string
+    phone: string
+    email: string
+    subject: string
+    message: string
+  }
+
 const YphresiaPageClient = ({ service_props, all_services_props }) => {
 
-    const [show, setShow] = useState({ show: false, message: '' });
+    const [show, setShow] = useState({ message: '' });
 
     const pathname = usePathname()
 
@@ -37,7 +45,7 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
         handleSubmit,
         formState: { errors },
 
-    } = useForm({
+    } = useForm<FormInputs>({
         resolver: zodResolver(formSchema),
     });
 
@@ -64,11 +72,11 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
                 body: JSON.stringify(body)
             })
 
-            setShow({ show: true, message: 'Το μύνημά σας στάλθηκε' })
+            setShow({ message: 'Το μύνημά σας στάλθηκε' })
 
         } catch (error) {
             console.error(error)
-            setShow({ show: true, message: 'Κάτι πήγε στράβα' })
+            setShow({ message: 'Κάτι πήγε στράβα' })
         }
 
     }
@@ -316,7 +324,7 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
             </section>
 
 
-            <Modal show={show.show} onHide={() => setShow(false)}>
+            <Modal show={!!show.message} onHide={() => setShow({message: ''})}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         {/* Modal heading */}
@@ -326,7 +334,7 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
                     {show.message}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShow(false)}>
+                    <Button variant="secondary" onClick={() => setShow({message: ''})}>
                         Κλείσιμο
                     </Button>
                     {/* <Button variant="primary" onClick={handleClose}>

@@ -11,6 +11,7 @@
     "debug_build": "NODE_OPTIONS='--inspect' next start"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.1.0",
     "@tanstack/react-query": "^4.29.7",
     "@types/node": "20.1.4",
