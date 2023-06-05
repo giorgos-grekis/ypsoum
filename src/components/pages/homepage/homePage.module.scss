@@ -25,6 +25,18 @@
     }
 }
 
+.sliderH1 {
+
+    width: 100%;
+
+
+    @media (max-width: 750px) {
+        line-height: 1.1;
+        font-size: 1.5rem;
+    }
+
+}
+
 // .overlay{
 //         position: absolute;
 //         top: 0;
@@ -41,6 +53,14 @@
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+
+    @media (max-width: 750px) {
+        width: 70%;
+    }
 }
 
 .titleContainer {

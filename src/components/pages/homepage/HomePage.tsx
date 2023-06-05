@@ -18,27 +18,28 @@ import SolarPanel from '@/components/UI/svgsComponents/SolarPanel';
 import Writing from '@/components/UI/svgsComponents/Writing';
 import Profit from '@/components/UI/svgsComponents/Profit';
 import Blueprint from '@/components/UI/svgsComponents/Blueprint';
+import { WdImage } from '@/components/UI/WdImage';
 
 
 
-function find_services_icon (id) {
+function find_services_icon(id) {
     // Μελέτη φωτοβολταϊκών
-    if(id === '3d5879dc-d37c-47d8-b59e-e3fb97103cee') {
+    if (id === '3d5879dc-d37c-47d8-b59e-e3fb97103cee') {
         return <SolarPanel />
     }
 
     // Αδειοδότηση
-    if(id === '7e328016-c07e-4394-8006-5322959b2aa8'){
+    if (id === '7e328016-c07e-4394-8006-5322959b2aa8') {
         return <Writing />
     }
 
     // Εγκατάσταση Φωτοβολταϊκών
-    if(id === '8a9556b3-429e-4baa-9cc4-f1f82198456f'){
+    if (id === '8a9556b3-429e-4baa-9cc4-f1f82198456f') {
         return <Profit />
     }
 
     //Εξοικονομώ
-    if (id === '2a46eb12-c4ca-429f-92ba-1af33c03b6e1'){
+    if (id === '2a46eb12-c4ca-429f-92ba-1af33c03b6e1') {
         return <Blueprint />
     }
 }
@@ -77,8 +78,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
         <>
 
             <section >
-             
-
                 <div
                     style={{ overflow: 'hidden' }}
                 >
@@ -92,33 +91,45 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                             const img_path = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${img}`
                             const alt = slider?.fileMeta?.[img_id]?.alt ?? field_h2
 
-                            
+
+
                             return (<div className={`${styles.mainSliderImageContainer}`} key={index} style={{ overflow: 'hidden' }}>
-                                <Image
+
+
+
+                                <WdImage
+                                    src={img_path}
+                                    width={1920}
+                                    height={950}
+                                    alt={alt}
+                                    priority={index === 0 ? true : false}
+                                />
+
+                                {/* <Image
                                     src={img_path}
                                     width={1920}
                                     height={950}
                                     alt={alt}
                                     style={{ objectFit: "cover", maxWidth: '100%', height: 'auto', maxHeight: '950px' }}
                                     priority={index === 0 ? true : false}
-                                />
+                                /> */}
 
                                 <div className={`${styles.mainSliderTextContainer}`}>
                                     <div className={`${styles.text}`}>
                                         {field_h2}
                                     </div>
                                     {(index === 0)
-                                        ? (<h1 className='h1'>
+                                        ? (<h1 className={`h1 ${styles.sliderH1}`}>
                                             {field_header_1}
                                         </h1>)
-                                        : (<div className='h1'>
+                                        : (<div className={`h1 ${styles.sliderH1}`}>
                                             {field_header_1}
                                         </div>)
                                     }
 
                                 </div>
 
-                                <div className={`${styles.overlay}`} />
+                                {/* <div className={`${styles.overlay}`} /> */}
 
                             </div>)
                         })}
@@ -127,7 +138,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                 </div>
             </section>
 
-        
+
 
 
 
@@ -286,7 +297,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                         {services?.data.map((service, index) => {
 
                             console.log('service: ', typeof service.id);
-                            
+
 
                             const title = service?.attributes?.title
                             const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.relationships?.field_image?.data?.[0]?.attributes?.uri.url}`
