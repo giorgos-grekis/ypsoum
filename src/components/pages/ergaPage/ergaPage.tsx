@@ -99,8 +99,9 @@ const ErgaPageClient = ({ erga }) => {
 
 
                             return (<div className="col-12 col-md-12 col-lg-6 col-xl-4 p-3 d-flex justify-content-center align-items-center" key={index}>
-                                <div className="overflow-hidden position-relative">
-                                    <WdLink href={link}>
+                                <WdLink className={`overflow-hidden position-relative ${styles.imageContainer}`} href={link}>
+                                    <>
+                                        {/* <WdLink href={link}> */}
                                         <Image
                                             src={img}
                                             alt={title}
@@ -109,18 +110,19 @@ const ErgaPageClient = ({ erga }) => {
                                             width={380}
                                             height={420}
                                         />
-                                    </WdLink>
+                                        {/* </WdLink> */}
 
-                                    <WdLink href={link}>
+                                        {/* <WdLink href={link}> */}
                                         <div className={`${styles.titleContainer}`}>
                                             <div className={`${styles.leftLine}`}>
                                                 <p className="mb-1 fs-6 text-muted">{category}</p>
                                                 <p className='mb-1 h3 fw-bold'>{title}</p>
                                             </div>
                                         </div>
-                                    </WdLink>
+                                        {/* </WdLink> */}
+                                    </>
 
-                                </div>
+                                </WdLink>
                             </div>)
                         })}
                     </div>

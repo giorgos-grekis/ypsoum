@@ -2,9 +2,18 @@
     position: relative;
     width: 100%;
     height: 550px;
-
+    display: block;
+    
+    // share ccs style from ergoPage.module.scss
+    composes: imageContainer from '../../ergaPage/ergoPage.module.scss';
+    
     @media (max-width:991.5px) {
         height: 300px;
+    }
+    &:hover{
+        .titleContainer {
+            z-index: 1;
+        }
     }
 }
 

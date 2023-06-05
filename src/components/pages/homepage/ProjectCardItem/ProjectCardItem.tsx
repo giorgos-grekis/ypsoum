@@ -6,8 +6,8 @@ import WdLink from '@/components/UI/WdLink'
 
 const ProjectCardItem = ({ title, category, img, link }) => {
     return (
-        <div className={`${styles.prosfataImage}`}>
-            <WdLink href={link}>
+        <WdLink className={`${styles.prosfataImage}`} href={link}>
+            {/* <WdLink href={link}> */}
                 <Image
                     src={img}
                     alt={title}
@@ -15,19 +15,19 @@ const ProjectCardItem = ({ title, category, img, link }) => {
                     fill={true}
                     priority={true}
                 />
-            </WdLink>
+            {/* </WdLink> */}
 
             <div className={`${styles.titleContainer}`}>
                 <div className={`${styles.leftLine}`}>
-                    <WdLink href={link}>
+                    {/* <WdLink href={link}> */}
                         <>
                             <p className="mb-1 fs-6 text-muted">{category}</p>
                             <p className='mb-1 h3 fw-bold'>{title}</p>
                         </>
-                    </WdLink>
+                    {/* </WdLink> */}
                 </div>
             </div>
-        </div>
+        </WdLink>
     )
 }
 
