@@ -1,8 +1,5 @@
 import React from 'react'
 import include from '@/functions/jsonapi/include'
-import normalizer from '@/functions/jsonapi/normalizer'
-
-
 import AboutUsPageClient from '@/components/pages/aboutUsPage/AboutUsPage'
 
 
@@ -16,8 +13,7 @@ async function getAboutData() {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
-            },
-            next: { revalidate: 1 }
+            }
         }
     )
 
@@ -44,8 +40,7 @@ async function getReviewsData() {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            next: { revalidate: 1 }
-
+            // next: { revalidate: 1 }
         }
     )
 

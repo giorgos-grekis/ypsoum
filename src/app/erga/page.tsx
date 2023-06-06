@@ -13,8 +13,7 @@ const project_props = async ()=> {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-      },
-      next: { revalidate: 60 }
+      }
     }
   )
 

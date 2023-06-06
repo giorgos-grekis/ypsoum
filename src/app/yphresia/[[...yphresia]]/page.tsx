@@ -14,7 +14,6 @@ async function getServiceData(service) {
             "Accept": "application/json",
             "Content-Type": "application/json",
         },
-        next: { revalidate: 1 },
         body: JSON.stringify({ path: path })
     })
 
@@ -32,7 +31,7 @@ async function getServiceData(service) {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
             },
-            next: { revalidate: 1 }
+
         }
     )
 

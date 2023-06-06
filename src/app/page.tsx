@@ -1,5 +1,4 @@
 import HomePage from '@/components/pages/homepage/HomePage'
-
 import include from '../functions/jsonapi/include'
 
 
@@ -190,9 +189,6 @@ export default async function Home({params}) {
 
   const [homePageProps, strengthsProps, sliderProps, projectProps, serviceProps] = await Promise.allSettled([homePagePromise, strengthsPromise, sliderPromise, projectPromise, servicePromise])
 
-
-
- 
 
 
   

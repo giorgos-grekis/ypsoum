@@ -1,27 +1,55 @@
 'use client'
 import React from 'react'
 import Image from 'next/image';
-
-
-import styles from './homePage.module.scss';
 import WdLink from '@/components/UI/WdLink';
-import YphresiesCard from '@/components/YphresiesCard/YphresiesCard';
-import ContactForm from '@/components/ContactForm/ContactForm';
+import { WdImage } from '@/components/UI/WdImage';
 import { find_link } from '@/functions/find_link';
-import ExperienceSection from './ΕxperienceSection/ExperienceSection';
-import ProjectCardItem from './ProjectCardItem/ProjectCardItem';
-
+import dynamic from 'next/dynamic';
 import Slider from "react-slick";
+import styles from './homePage.module.scss';
+
+const YphresiesCard = dynamic(() => import('@/components/YphresiesCard/YphresiesCard'), {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+});
+
+const ProjectCardItem = dynamic(() => import('./ProjectCardItem/ProjectCardItem'), {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+});
+
+
+const ExperienceSection = dynamic(() => import('./ΕxperienceSection/ExperienceSection'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+});
+
+const ContactForm = dynamic(() => import('@/components/ContactForm/ContactForm'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+})
 
 // icon
-import SolarPanel from '@/components/UI/svgsComponents/SolarPanel';
-import Writing from '@/components/UI/svgsComponents/Writing';
-import Profit from '@/components/UI/svgsComponents/Profit';
-import Blueprint from '@/components/UI/svgsComponents/Blueprint';
-import { WdImage } from '@/components/UI/WdImage';
+const SolarPanel = dynamic(() => import('@/components/UI/svgsComponents/SolarPanel'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+})
+const Writing = dynamic(() => import('@/components/UI/svgsComponents/Writing'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+})
+const Profit = dynamic(() => import('@/components/UI/svgsComponents/Profit'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+})
+const Blueprint = dynamic(() => import('@/components/UI/svgsComponents/Blueprint'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+})
 
 
 
+// functions
 function find_services_icon(id) {
     // Μελέτη φωτοβολταϊκών
     if (id === '3d5879dc-d37c-47d8-b59e-e3fb97103cee') {
@@ -46,7 +74,7 @@ function find_services_icon(id) {
 
 
 
-const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, serviceProps,params }) => {
+const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, serviceProps, params }) => {
 
 
     const homePage = homePageProps.status === 'fulfilled' && homePageProps.value || []
@@ -57,8 +85,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
     const field_section_about2 = homePage?.data?.[0]?.attributes?.field_section_about2?.value || ''
     const field_section_keypoints2 = homePage?.data?.[0]?.attributes?.field_section_keypoints2?.value || ''
-    
-
 
 
     const settings = {
@@ -139,10 +165,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                 </div>
             </section>
 
-
-
-
-
             {/*** icons card ***/}
             <section>
                 <div className="container">
@@ -194,8 +216,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
                 </div>
             </section>
-
-
 
             {/*** About -- field_section_about2 -- Ποιοι είμαστε  ***/}
             <section>
@@ -261,7 +281,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
             </section>
 
 
-
             {/*** Υπηρεσίες section Image ***/}
             <section>
                 <div className={`${styles.yphresiesSectionImage}`}>
@@ -288,10 +307,8 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
             </section>
 
 
-
             {/*** Υπηρεσίες section Cards -- Ιmage title ***/}
             <section>
-
                 <div className="container">
                     <div className={`row ${styles.yphreseisCardSectionAllCards}`}>
 
@@ -301,19 +318,16 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                             const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.relationships?.field_image?.data?.[0]?.attributes?.uri.url}`
                             const body = service?.attributes?.body?.value
                             const link = find_link(service, 'yphresia')
-
                             const icon = find_services_icon(service.id)
 
                             return (
                                 <WdLink href={`${link}`} key={index} className="col-12 col-md-6 col-lg-3 mb-3 mb-md-4 mb-lg-5 px-2" >
-
                                     <YphresiesCard
                                         title={title}
                                         img={img}
                                         body={body}
                                         icon={icon}
                                     />
-
                                 </WdLink>
                             )
 
@@ -321,7 +335,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
                     </div>
                 </div>
-
             </section>
 
 
@@ -333,10 +346,10 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
 
 
+
             {/*** Προσφατα έργα ***/}
             {projects?.data && (
                 <section>
-                 
                     <div className="container my-5">
                         <div className="row">
                             <div className="text-center">
@@ -375,12 +388,13 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                     </div>
 
                 </section>
-
             )}
+
 
 
             {/*** Φόρμα επικοινωνίας ***/}
             <ContactForm />
+
 
 
         </>

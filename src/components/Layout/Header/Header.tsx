@@ -105,7 +105,7 @@ const Header = ({ services_props, project_props }) => {
             <Nav className="mx-auto">
 
               {/* ΑΡΧΙΚΗ */}
-              <Nav.Item className={`${styles.link} ${pathname !== '/' ? '' : styles.active}`} id='link_home_page'>
+              <Nav.Item className={`${styles.link} ${pathname === '/' ? styles.active : '' }`} id='link_home_page'>
                 <WdLink href={`/`} className={`${styles.link} nav-link `}>
                   ΑΡΧΙΚΗ
                 </WdLink>

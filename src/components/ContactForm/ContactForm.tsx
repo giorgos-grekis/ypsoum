@@ -1,15 +1,15 @@
 'use client';
 import React, { useState } from 'react'
-import Image from 'next/image'
-import Form from 'react-bootstrap/Form';
+// import Image from 'next/image'
+// import Form from 'react-bootstrap/Form';
 import { useForm } from 'react-hook-form'
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import GeneralContactForm from './GeneralContactForm';
-import styles from './contactForm.module.scss'
 import SideBarContactForm from './SideBarContactForm';
+import styles from './contactForm.module.scss'
 
 
 

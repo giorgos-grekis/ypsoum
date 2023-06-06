@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "tsc": "node tsc",
     "lint": "next lint",
     "debug": "NODE_OPTIONS='--inspect' next dev",
     "debug_build": "NODE_OPTIONS='--inspect' next start"
