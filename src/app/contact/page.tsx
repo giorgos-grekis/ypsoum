@@ -62,11 +62,15 @@ export async function generateMetadata() {
   }
 }
 
-const ContactPage = async () => {
+const ContactPage = async ({params}) => {
+
+
+  
   const data_props = await getContactData()
   return (
     <ContactPageClient 
       contact_props={data_props}
+      params={params}
     />
   )
 }

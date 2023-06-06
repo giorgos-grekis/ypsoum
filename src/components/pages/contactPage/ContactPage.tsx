@@ -7,13 +7,16 @@ import styles from './contactPage.module.scss'
 
 
 
-const ContactPageClient = ({ contact_props }) => {
+const ContactPageClient = ({ contact_props , params}) => {
 
     const title = contact_props?.data?.[0]?.attributes?.title
     const map = contact_props?.data?.[0]?.attributes?.body?.value
     const email = contact_props?.data?.[0]?.attributes?.field_email
     const location = contact_props?.data?.[0]?.attributes?.field_location
     const phone = contact_props?.data?.[0]?.attributes?.field_phone
+
+
+    
 
 
     return (

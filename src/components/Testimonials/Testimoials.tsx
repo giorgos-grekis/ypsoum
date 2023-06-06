@@ -25,8 +25,6 @@ const Testimoials = ({ reviews }) => {
 
                     {reviews?.data?.map((review, index) => {
 
-                        console.log('review: ', review?.attributes?.field_extra_info                        );
-
                         const body = review?.attributes?.body?.value
                         const name = review?.attributes?.title
                         const category = review?.attributes?.field_extra_info 

@@ -44,7 +44,7 @@ const YphresiesCard = ({ title, img, body, icon }) => {
                         {title}
                     </p>
 
-                    {/* {console.log('title: ', title.length)} */}
+        
                     <div className={`text-muted ${styles.body}`} style={title.length > 20 ? { ['--lines-to-show' as string]: '2' } : {}} dangerouslySetInnerHTML={{ __html: body }} />
 
                     <WdLink href='/'>

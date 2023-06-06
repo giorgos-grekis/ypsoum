@@ -46,7 +46,7 @@ function find_services_icon(id) {
 
 
 
-const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, serviceProps }) => {
+const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, serviceProps,params }) => {
 
 
     const homePage = homePageProps.status === 'fulfilled' && homePageProps.value || []
@@ -57,6 +57,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
     const field_section_about2 = homePage?.data?.[0]?.attributes?.field_section_about2?.value || ''
     const field_section_keypoints2 = homePage?.data?.[0]?.attributes?.field_section_keypoints2?.value || ''
+    
 
 
 
@@ -249,9 +250,9 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
                             {/* drupal body */}
                             <div dangerouslySetInnerHTML={{ __html: field_section_about2 }} />
 
-                            <button className="btn btn-secondary text-white py-3 px-4  fw-bold">
+                            <WdLink href={'/about-us'} className="btn btn-secondary text-white py-3 px-4  fw-bold">
                                 ΠΕΡΙΣΣΟΤΕΡΑ
-                            </button>
+                            </WdLink>
 
                         </div>
 
@@ -296,9 +297,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
                         {services?.data.map((service, index) => {
 
-                            console.log('service: ', typeof service.id);
-
-
                             const title = service?.attributes?.title
                             const img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${service?.relationships?.field_image?.data?.[0]?.attributes?.uri.url}`
                             const body = service?.attributes?.body?.value
@@ -338,7 +336,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
             {/*** Προσφατα έργα ***/}
             {projects?.data && (
                 <section>
-                    {/* {console.log('projects: ',projects)} */}
+                 
                     <div className="container my-5">
                         <div className="row">
                             <div className="text-center">

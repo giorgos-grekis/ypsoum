@@ -9,10 +9,16 @@ import WdLink from '@/components/UI/WdLink';
 import { find_link } from '@/functions/find_link';
 import Image from 'next/image';
 
+
+
+
 const Header = ({ services_props, project_props }) => {
 
 
   const pathname = usePathname()!
+
+ 
+
 
   const services = services_props.status === 'fulfilled' && services_props.value || []
   const projects = project_props.status === 'fulfilled' && project_props.value || []
@@ -53,6 +59,14 @@ const Header = ({ services_props, project_props }) => {
 
   })
 
+  // add active class to first load Αρχική
+  useEffect(() => {
+    const link_home_page = document.getElementById('link_home_page')
+
+    if(pathname === '/') link_home_page?.classList.add(styles.active)
+    
+  })
+
 
   return (
     <header className={`${styles.headerContainer}`} id='navbar'>
@@ -91,8 +105,8 @@ const Header = ({ services_props, project_props }) => {
             <Nav className="mx-auto">
 
               {/* ΑΡΧΙΚΗ */}
-              <Nav.Item className={`${styles.link} ${pathname === '/' ? styles.active : ''}`}>
-                <WdLink href={`/`} className={`${styles.link} nav-link`}>
+              <Nav.Item className={`${styles.link} ${pathname !== '/' ? '' : styles.active}`} id='link_home_page'>
+                <WdLink href={`/`} className={`${styles.link} nav-link `}>
                   ΑΡΧΙΚΗ
                 </WdLink>
               </Nav.Item>

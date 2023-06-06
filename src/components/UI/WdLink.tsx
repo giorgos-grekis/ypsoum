@@ -24,9 +24,7 @@ const WdLink = ({ href:link, children, className,target }: WdLink) => {
     // const router = useRouter();
     // const locale = router?.locale;
 
-    // console.log('router: ', router);
-
-
+  
     // const link = getProperLink(href, locale);
 
     return (

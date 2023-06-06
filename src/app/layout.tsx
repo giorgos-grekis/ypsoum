@@ -1,3 +1,4 @@
+
 import { ReactNode } from 'react'
 import { Inter } from 'next/font/google'
 import Header from '@/components/Layout/Header/Header'
@@ -98,10 +99,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   const [services_props, project_props, contact_props] = await Promise.allSettled([all_services_promise, all_project_promise, footer_cotact_promise])
 
 
-  
+
 
 
   return (
+
     <html lang="el">
 
       <body>
@@ -116,5 +118,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       </body>
 
     </html>
+
   )
 }

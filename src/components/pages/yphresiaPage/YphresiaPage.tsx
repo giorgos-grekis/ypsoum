@@ -84,6 +84,7 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
                                     style={{ objectFit: "cover" }}
                                     fill={true}
                                 />
+                                 <div className={styles.onhoverLayout}/>
                             </div>
 
                             <div
@@ -109,13 +110,14 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
 
 
                                 <div className="col-12 col-md-6">
-                                    <div style={{ width: '100%', height: '100%', position: 'relative', minHeight: '300px' }}>
+                                    <div  style={{ width: '100%', height: '100%', position: 'relative', minHeight: '300px' }}>
                                         <Image
                                             src={secondary_img}
                                             alt={alt_secondary_img}
                                             style={{ objectFit: "cover" }}
                                             fill={true}
                                         />
+                                        
                                     </div>
                                 </div>
                             </div>

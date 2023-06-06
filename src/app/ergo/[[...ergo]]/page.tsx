@@ -97,7 +97,7 @@ const EgoPage = async ({ params: { ergo } }) => {
 
   return (
     <>
-      <ErgoPageClient ergo={data}/>
+      <ErgoPageClient ergo={data} params={params}/>
     </>
   )
 }

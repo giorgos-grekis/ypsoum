@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import styles from './page.module.scss'
 import HomePage from '@/components/pages/homepage/HomePage'
 
 import include from '../functions/jsonapi/include'
@@ -17,13 +15,13 @@ const home_page_props = async () => {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-      },
-      next: { revalidate: 1 }
+      }
     }
   )
 
   // Recommendation: handle errors
   if (!res.ok) {
+
     throw new Error('Failed to fetch data homepage');
   }
 
@@ -41,8 +39,7 @@ const sliders_props = async () => {
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
-      },
-      next: { revalidate: 1 }
+      }
     }
   )
 
@@ -68,7 +65,7 @@ const strengths_props = async () => {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      next: { revalidate: 1 }
+      // next: { revalidate: 1 }
     }
   )
 
@@ -92,7 +89,7 @@ const project_props = async () => {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      next: { revalidate: 1 }
+      // next: { revalidate: 1 }
     }
   )
 
@@ -118,7 +115,7 @@ const service_props = async () => {
         "Accept": "application/json",
         "Content-Type": "application/json",
       },
-      next: { revalidate: 1 }
+      // next: { revalidate: 1 }
     }
   )
 
@@ -135,6 +132,7 @@ const service_props = async () => {
 
 export async function generateMetadata() {
 
+ 
   const homePagePromise = home_page_props()
   const sliderPromise = sliders_props()
 
@@ -147,7 +145,7 @@ export async function generateMetadata() {
 
 
   const title = data_props?.data?.[0]?.attributes?.title
-  let string = data_props?.data[0]?.attributes?.body?.value.replace(/<(.|\n)*?>/g, "").trim().substring(0, 150) || ''
+  let string = data_props?.data?.[0]?.attributes?.body?.value.replace(/<(.|\n)*?>/g, "").trim().substring(0, 150) || ''
   const body = string?.substring(0, Math.min(string.length, string.lastIndexOf(" "))) || title;
   const canonical = ``
   const main_img = `${process.env.NEXT_PUBLIC_DRUPAL_URL}${slider_props?.data?.[0]?.relationships?.field_image?.data?.[0]?.attributes?.uri?.url}` || ''
@@ -180,7 +178,7 @@ export async function generateMetadata() {
 
 
 
-export default async function Home() {
+export default async function Home({params}) {
 
 
   const homePagePromise = home_page_props()
@@ -194,6 +192,11 @@ export default async function Home() {
 
 
 
+ 
+
+
+  
+
 
   return (
     <main className={''}>
@@ -203,6 +206,7 @@ export default async function Home() {
         strengthsProps={strengthsProps}
         projectProps={projectProps}
         serviceProps={serviceProps}
+        params={params}
       />
     </main>
   )

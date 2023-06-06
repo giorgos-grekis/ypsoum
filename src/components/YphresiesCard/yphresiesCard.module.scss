@@ -12,7 +12,6 @@
 
     &:hover {
 
-  
         overflow: hidden;
         .onhoverLayout {
             position: absolute;
@@ -33,7 +32,7 @@
                 animation: shine 0.75s;
                 position: absolute;
                 top: 0;
-                left: 0;
+                left: -100%;
                 display: block;
                 content: "";
                 width: 50%;

@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import styles from './ergo.module.scss';
 
-const ErgoPageClient = ({ ergo }) => {
+const ErgoPageClient = ({ ergo, params }) => {
 
 
   const title = ergo?.data?.[0]?.attributes?.title
@@ -26,8 +26,6 @@ const ErgoPageClient = ({ ergo }) => {
 
 
 
-
-
   return (
     <>
       {/* main image */}
@@ -38,7 +36,7 @@ const ErgoPageClient = ({ ergo }) => {
       <section>
         <div className="container">
           {/* image */}
-          <div className={`row ${styles.imageContainer} mx-0 mx-md-5`}>
+          <div className={`row g-0 ${styles.imageContainer} mx-0 mx-md-5`}>
             <Image
               src={img}
               width={421}
@@ -46,6 +44,7 @@ const ErgoPageClient = ({ ergo }) => {
               style={{ objectFit: 'cover' }}
               alt={title}
             />
+            <div className={styles.onhoverLayout}/>
           </div>
 
           {/* details summary */}
@@ -195,6 +194,7 @@ const ErgoPageClient = ({ ergo }) => {
                     style={{ objectFit: 'cover' }}
                     alt={title}
                   />
+                  
                 </div>
               </div>
             </div>
