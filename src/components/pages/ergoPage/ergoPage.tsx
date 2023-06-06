@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import styles from './ergo.module.scss';
 
-const ErgoPageClient = ({ ergo, params }) => {
+const ErgoPageClient = ({ ergo }) => {
 
 
   const title = ergo?.data?.[0]?.attributes?.title

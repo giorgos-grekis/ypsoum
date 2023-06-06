@@ -62,7 +62,7 @@ export async function generateMetadata() {
   }
 }
 
-const ContactPage = async ({params}) => {
+const ContactPage = async () => {
 
 
   
@@ -70,7 +70,6 @@ const ContactPage = async ({params}) => {
   return (
     <ContactPageClient 
       contact_props={data_props}
-      params={params}
     />
   )
 }
