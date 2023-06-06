@@ -64,6 +64,18 @@ const Header = ({ services_props }) => {
   })
 
 
+  // toggle nav bar
+  useEffect(() => {
+    const toggle_nav = document.getElementById('navbar-nav')
+    toggle_nav?.classList.remove('show')
+
+    // aria-labelledby="nav-dropdown-ΥΠΗΡΕΣΙΕΣ"
+    const services_dropdown = document.querySelector('.dropdown-menu')
+    services_dropdown?.classList.remove('show')
+   
+  },[pathname])
+
+
   return (
     <header className={`${styles.headerContainer}`} id='navbar'>
       <Navbar bg="light" expand="lg">
@@ -84,20 +96,26 @@ const Header = ({ services_props }) => {
                 </div>
 
                 <div className='d-block d-lg-none' id='logo-mobile'>
-                  <Image
+                  {/* <Image
                     src='/images/logo-moblie.png'
                     alt='YPSOUN Logo Image mobile'
                     width={27.6} // 60
                     height={30}  // 65 
+                  /> */}
+                  <Image
+                    src='/images/YPSOUN-black.png'
+                    alt='YPSOUN Logo Image mobile'
+                    width={128} // 256
+                    height={41}  // 82 
                   />
                 </div>
               </>
             </WdLink>
           </Navbar.Brand>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="navbar-nav" />
 
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse id="navbar-nav">
             <Nav className="mx-auto">
 
               {/* ΑΡΧΙΚΗ */}
