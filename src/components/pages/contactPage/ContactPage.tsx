@@ -1,13 +1,20 @@
 'use client'
 import React from 'react'
 import MainImage from '@/components/MainImage/MainImage';
-import ContactForm from '@/components/ContactForm/ContactForm';
+// import ContactForm from '@/components/ContactForm/ContactForm';
+
+import dynamic from 'next/dynamic';
 
 import styles from './contactPage.module.scss'
 
+const ContactForm = dynamic(() => import('@/components/ContactForm/ContactForm'), {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+})
 
 
-const ContactPageClient = ({ contact_props}) => {
+
+const ContactPageClient = ({ contact_props }) => {
 
     const title = contact_props?.data?.[0]?.attributes?.title
     const map = contact_props?.data?.[0]?.attributes?.body?.value
@@ -16,7 +23,7 @@ const ContactPageClient = ({ contact_props}) => {
     const phone = contact_props?.data?.[0]?.attributes?.field_phone
 
 
-    
+
 
 
     return (

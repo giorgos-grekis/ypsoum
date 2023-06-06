@@ -1,6 +1,6 @@
 import React from 'react'
-import YphresiaPageClient from '@/components/pages/yphresiaPage/YphresiaPage'
 import include from '@/functions/jsonapi/include'
+import YphresiaPageClient from '@/components/pages/yphresiaPage/YphresiaPage'
 
 
 async function getServiceData(service) {

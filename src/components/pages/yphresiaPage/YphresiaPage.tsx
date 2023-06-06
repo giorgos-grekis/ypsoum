@@ -1,16 +1,22 @@
 'use client'
 import React from 'react'
-import MainImage from '@/components/MainImage/MainImage'
-
 import { usePathname } from 'next/navigation';
-
-import styles from './uphresiaPage.module.scss'
-import WdLink from '@/components/UI/WdLink'
+import MainImage from '@/components/MainImage/MainImage'
 import Image from 'next/image'
+import styles from './uphresiaPage.module.scss'
 import { find_img_alt } from '@/functions/find_img_alt'
 import { find_link } from '@/functions/find_link'
 
-import ContactForm from '@/components/ContactForm/ContactForm';
+// import ContactForm from '@/components/ContactForm/ContactForm';
+
+import WdLink from '@/components/UI/WdLink'
+import dynamic from 'next/dynamic'
+
+
+const ContactForm = dynamic(() => import('@/components/ContactForm/ContactForm'), {
+    loading: () => <div>Loading...</div>,
+    ssr: false
+})
 
 
 
@@ -84,7 +90,7 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
                                     style={{ objectFit: "cover" }}
                                     fill={true}
                                 />
-                                 <div className={styles.onhoverLayout}/>
+                                <div className={styles.onhoverLayout} />
                             </div>
 
                             <div
@@ -110,14 +116,14 @@ const YphresiaPageClient = ({ service_props, all_services_props }) => {
 
 
                                 <div className="col-12 col-md-6">
-                                    <div  style={{ width: '100%', height: '100%', position: 'relative', minHeight: '300px' }}>
+                                    <div style={{ width: '100%', height: '100%', position: 'relative', minHeight: '300px' }}>
                                         <Image
                                             src={secondary_img}
                                             alt={alt_secondary_img}
                                             style={{ objectFit: "cover" }}
                                             fill={true}
                                         />
-                                        
+
                                     </div>
                                 </div>
                             </div>

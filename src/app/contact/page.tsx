@@ -2,6 +2,7 @@ import React from 'react'
 import ContactPageClient from '@/components/pages/contactPage/ContactPage'
 import include from '@/functions/jsonapi/include';
 
+
 async function getContactData() {
   const url = `${process.env.NEXT_PUBLIC_DRUPAL_URL}/jsonapi/node/contact`
 
@@ -64,9 +65,8 @@ export async function generateMetadata() {
 
 const ContactPage = async () => {
 
-
-  
   const data_props = await getContactData()
+
   return (
     <ContactPageClient 
       contact_props={data_props}
