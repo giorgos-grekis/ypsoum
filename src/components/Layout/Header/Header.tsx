@@ -12,18 +12,13 @@ import Image from 'next/image';
 
 
 
-const Header = ({ services_props, project_props }) => {
+const Header = ({ services_props }) => {
 
 
   const pathname = usePathname()!
 
- 
-
-
   const services = services_props.status === 'fulfilled' && services_props.value || []
-  const projects = project_props.status === 'fulfilled' && project_props.value || []
-
-
+ 
 
   // add scroll event listener
   useEffect(() => {
@@ -58,6 +53,7 @@ const Header = ({ services_props, project_props }) => {
     }
 
   })
+
 
   // add active class to first load Αρχική
   useEffect(() => {
@@ -128,25 +124,12 @@ const Header = ({ services_props, project_props }) => {
               </NavDropdown>
 
               {/*  ΤΑ ΕΡΓΑ ΜΑΣ */}
-              <NavDropdown title="ΤΑ ΕΡΓΑ ΜΑΣ" id="nav-dropdown-ΤΑ-ΕΡΓΑ-ΜΑΣ" className={`${styles.link} ${pathname.startsWith('/erg') ? styles.active : ''}`}>
-
-
-                <WdLink href={`/erga`} className={`${styles.simpleLink} dropdown-item`}>
-                  Όλα τα έργα μας
+              <Nav.Item className={`${styles.link} ${pathname.startsWith('/erg') ? styles.active : ''}`}>
+                <WdLink href={`/erga`} className={`${styles.link} nav-link `}>
+                 ΤΑ ΕΡΓΑ ΜΑΣ
                 </WdLink>
+              </Nav.Item>
 
-
-                {projects.data.map((project, index) => {
-
-                  const title = project?.attributes?.title
-                  const link = find_link(project, 'ergo')
-
-                  return (<WdLink href={link} className={`${styles.simpleLink} dropdown-item`} key={index}>
-                    {title}
-                  </WdLink>)
-                })}
-
-              </NavDropdown>
 
 
               {/* Η ΕΤΑΙΡΕΙΑ */}
@@ -171,13 +154,6 @@ const Header = ({ services_props, project_props }) => {
 
 
           <div className={`d-none d-lg-flex  ${styles.searchContainer}`}>
-
-            {/* <div className={styles.searchIcon}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-1 h-1">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg>
-            </div> */}
-
             <WdLink href={'/contact'}>
               <button className="btn btn-secondary text-white p-3 fw-bold">
                 ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ

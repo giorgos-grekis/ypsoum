@@ -94,7 +94,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
-        autoplay: true
+        autoplay: false
     };
 
 
@@ -220,7 +220,7 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
             {/*** About -- field_section_about2 -- Ποιοι είμαστε  ***/}
             <section>
                 <div className="container">
-                    <div className="row my-5 py-5">
+                    <div className="row my-0 my-sm-5 py-5">
                         {/* images */}
                         <div className="col-12 col-lg-6">
 
@@ -338,13 +338,10 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
             </section>
 
 
-
             {/***  30 χρόνια εμπειρία -- field_section_keypoints2 ***/}
             <section>
                 <ExperienceSection field_section_keypoints2={field_section_keypoints2} />
             </section>
-
-
 
 
             {/*** Προσφατα έργα ***/}
@@ -394,8 +391,6 @@ const HomePage = ({ homePageProps, sliderProps, strengthsProps, projectProps, se
 
             {/*** Φόρμα επικοινωνίας ***/}
             <ContactForm />
-
-
 
         </>
     )

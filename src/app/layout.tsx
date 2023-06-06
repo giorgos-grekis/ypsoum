@@ -1,14 +1,13 @@
 
 import { ReactNode } from 'react'
-import { Inter } from 'next/font/google'
+// import { Inter } from 'next/font/google'
 import Header from '@/components/Layout/Header/Header'
 import Footer from '@/components/Layout/Footer/Footer'
 
 import './globals.scss'
 
 
-
-const inter = Inter({ subsets: ['latin'] })
+// const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Αρχική',
@@ -93,10 +92,10 @@ async function getContactData() {
 export default async function RootLayout({ children }: { children: ReactNode }) {
 
   const all_services_promise = getAllServicesData()
-  const all_project_promise = getAllProjectData()
+  // const all_project_promise = getAllProjectData()
   const footer_cotact_promise = getContactData()
 
-  const [services_props, project_props, contact_props] = await Promise.allSettled([all_services_promise, all_project_promise, footer_cotact_promise])
+  const [services_props, contact_props] = await Promise.allSettled([all_services_promise, footer_cotact_promise])
 
 
 
@@ -109,7 +108,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
       <body>
         <Header
           services_props={services_props}
-          project_props={project_props}
+          // project_props={project_props}
         />
         {children}
         <Footer

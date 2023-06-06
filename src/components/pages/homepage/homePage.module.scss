@@ -61,6 +61,10 @@
     @media (max-width: 750px) {
         width: 70%;
     }
+
+    @media (max-width: 575.5px) {
+        transform: translate(-50%, -20%);
+    }
 }
 
 .titleContainer {
@@ -102,6 +106,10 @@
     // padding: 2rem 1rem;
     background: white;
     box-shadow: 1px 1px 5px rgba(200, 200, 200, 0.5);
+
+    @media(max-width: 575.5px){
+        margin-top: 2rem;
+    }
 }
 
 .iconItem {
